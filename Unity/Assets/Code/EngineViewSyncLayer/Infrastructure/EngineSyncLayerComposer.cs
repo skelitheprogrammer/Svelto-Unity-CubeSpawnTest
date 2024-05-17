@@ -16,7 +16,7 @@ namespace Code.EngineViewSyncLayer.Infrastructure
             orderedEngines.Add(syncPositionEngine);
             orderedEngines.Add(syncRotationEngine);
 
-            root.AddEngine(new SyncEntityCreation(instanceManager));
+            root.AddEngine(new SyncEntityState(instanceManager));
             root.AddEngine(syncPositionEngine);
             root.AddEngine(syncRotationEngine);
         }

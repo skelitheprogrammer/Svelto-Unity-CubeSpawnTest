@@ -15,4 +15,16 @@ namespace Code.CubeLayer.Entities
             new ComponentBuilder<ViewReference>()
         };
     }
+
+    public class DestroyableCubeEntityDescriptor : ExtendibleEntityDescriptor<CubeEntityDescriptor>
+    {
+        public DestroyableCubeEntityDescriptor()
+        {
+            ExtendWith(new IComponentBuilder[]
+            {
+                new ComponentBuilder<DestroyDistance>(),
+                new ComponentBuilder<DistanceTraveled>(),
+            });
+        }
+    }
 }

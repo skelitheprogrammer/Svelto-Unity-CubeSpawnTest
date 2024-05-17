@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Code.CubeLayer.Entities.Components
 {
-    public struct Direction : IEntityComponent
+    public struct Rotation : IEntityComponent
     {
-        public Vector3 Value;
+        public Quaternion Value;
     }
 }

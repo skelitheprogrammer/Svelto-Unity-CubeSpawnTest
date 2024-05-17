@@ -13,18 +13,18 @@ namespace Code.Infrastructure
         {
         }
     }
-    
+
     public struct SortedTickEngineOrder : ISequenceOrder
     {
         public string[] enginesOrder => new[]
         {
             nameof(CubeEngineNames.MOVE_CUBE_ENGINE),
             nameof(CubeEngineNames.FACE_DIRECTION_ENGINE),
+            nameof(CubeEngineNames.CALCULATE_CUBE_DISTANCE),
+            nameof(CubeEngineNames.DESTROY_CUBE_ON_DISTANCE_REACH),
             nameof(SyncEngineNames.SYNC_POSITION_ENGINE),
             nameof(SyncEngineNames.SYNC_ROTATION_ENGINE),
             nameof(TickEngineNames.SUBMISSION_ENGINE),
         };
     }
-
-
 }

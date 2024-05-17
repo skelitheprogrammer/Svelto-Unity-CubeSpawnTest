@@ -6,6 +6,7 @@ namespace Code.UtilityLayer.DataSources
     public class CubeConfigSo : ScriptableObject
     {
         [field: SerializeField] public CubeConfig Config { get; private set; }
+        [field: SerializeField] public DestroyableCubeConfig DestroyableCubeConfig { get; private set; }
     }
 
     [System.Serializable]
@@ -22,5 +23,13 @@ namespace Code.UtilityLayer.DataSources
         //Could be assetReference from addressables
 
         public GameObject Prefab;
+    }
+
+    [System.Serializable]
+    public class DestroyableCubeConfig
+    {
+        public CubeConfig Default;
+        public float MinDestroyDistance;
+        public float MaxDestroyDistance;
     }
 }

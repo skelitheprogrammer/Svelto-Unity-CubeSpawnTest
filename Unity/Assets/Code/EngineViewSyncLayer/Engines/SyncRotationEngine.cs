@@ -1,4 +1,5 @@
 ﻿using Code.CubeLayer.Entities.Components;
+using Code.CubeLayer.Infrastructure;
 using Code.EngineViewSyncLayer.Components;
 using Code.EngineViewSyncLayer.Infrastructure;
 using Code.EngineViewSyncLayer.Objects;
@@ -27,9 +28,7 @@ namespace Code.EngineViewSyncLayer.Engines
 
         public void Step()
         {
-            var groups = entitiesDB.FindGroups<ViewReference, Rotation>();
-
-            foreach (var ((_, positions, entitiesID, count), groupId) in entitiesDB.QueryEntities<ViewReference, Rotation>(groups))
+            foreach (var ((_, positions, entitiesID, count), groupId) in entitiesDB.QueryEntities<ViewReference, Rotation>(Movable.Groups))
             {
                 for (int i = 0; i < count; i++)
                 {

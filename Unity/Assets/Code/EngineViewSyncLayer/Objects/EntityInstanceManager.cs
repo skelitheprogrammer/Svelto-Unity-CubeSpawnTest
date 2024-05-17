@@ -18,7 +18,6 @@ namespace Code.EngineViewSyncLayer.Objects
         public void Add(uint entityId, ValueIndex resourceIndex)
         {
             T instance = _resourceManager[resourceIndex].Get();
-
             _map.Add(entityId, instance);
         }
 

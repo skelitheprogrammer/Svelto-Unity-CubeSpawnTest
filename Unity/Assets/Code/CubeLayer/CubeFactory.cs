@@ -49,7 +49,41 @@ namespace Code.CubeLayer
             {
                 ResourceId = _resourceIndex
             });
+        }
+
+        public void CreateDestroyable(in DestroyableCubeConfig destroyableCubeConfig)
+        {
+            uint entityID = _storage.Get();
+            EntityInitializer entityInitializer = _entityFactory.BuildEntity<DestroyableCubeEntityDescriptor>(entityID, MovableCubes.BuildGroup);
+
+            CubeConfig config = destroyableCubeConfig.Default;
+
+            Vector3 onUnit = Random.onUnitSphere;
+            float positionOffset = Random.Range(config.MinCenterOffset, config.MaxCenterOffset);
+            Vector3 position = onUnit * positionOffset;
             
+            entityInitializer.Init(new Position
+            {
+                Value = position
+            });
+            entityInitializer.Init(new Direction
+            {
+                Value = onUnit
+            });
+            entityInitializer.Init(new MoveSpeed
+            {
+                Value = Random.Range(config.MinSpeed, config.MaxSpeed)
+            });
+            entityInitializer.Init(new ViewReference
+            {
+                ResourceId = _resourceIndex
+            });
+
+            entityInitializer.Init(new DistanceTraveled(position));
+            entityInitializer.Init(new DestroyDistance
+            {
+                Value = Random.Range(destroyableCubeConfig.MinDestroyDistance, destroyableCubeConfig.MaxDestroyDistance)
+            });
         }
     }
 }

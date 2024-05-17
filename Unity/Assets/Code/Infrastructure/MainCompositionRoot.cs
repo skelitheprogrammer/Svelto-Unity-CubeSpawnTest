@@ -23,7 +23,6 @@ namespace Code.Infrastructure
     {
         private EnginesRoot _engineRoot;
         private bool _initialized;
-        private StartupEngine _startup;
 
         public void OnContextCreated<T>(T contextHolder)
         {
@@ -43,9 +42,12 @@ namespace Code.Infrastructure
         {
             EntitiesSubmissionScheduler entityScheduler = new();
             _engineRoot = new EnginesRoot(entityScheduler);
-            CubeConfig cubeConfig = contextHolder._configSo.Config;
-
+            IEntityFunctions functions = _engineRoot.GenerateEntityFunctions();
             IEntityFactory entityFactory = _engineRoot.GenerateEntityFactory();
+
+            CubeConfig cubeConfig = contextHolder.ConfigSO.Config;
+            DestroyableCubeConfig destroyableCubeConfig = contextHolder.ConfigSO.DestroyableCubeConfig;
+
 
             ViewHandlerResourceManager<GameObject> gameObjectViewHandlerManager = new();
             EntityInstanceManager<GameObject> entityInstanceManager = new(gameObjectViewHandlerManager);
@@ -53,7 +55,7 @@ namespace Code.Infrastructure
 
             ValueIndex cubeResourceIndex = gameObjectViewHandlerManager.Add(cubeConfig.Prefab);
 
-            GameObjectPool gameObjectPool = new(cubeResourceIndex, gameObjectFactory, cubeConfig.Count);
+            GameObjectPool gameObjectPool = new(cubeResourceIndex, gameObjectFactory);
             CubeViewHandler cubeViewHandler = new(gameObjectPool);
 
             gameObjectViewHandlerManager.RegisterHandler(cubeResourceIndex, cubeViewHandler);
@@ -67,19 +69,24 @@ namespace Code.Infrastructure
 
             SortedEnginesGroup sortedEnginesGroup = new(orderedEngines);
 
-            StartupEngine startupEngine = new(cubeFactory, cubeConfig);
+            CubeStartupEngine cubeStartupEngine = new(cubeFactory, cubeConfig);
+            DestroyableCubeStartup destroyableCubeStartup = new(cubeFactory, destroyableCubeConfig);
 
-            AttachPlayerLoop(startupEngine, sortedEnginesGroup);
+            AttachPlayerLoop(new IStepEngine[]
+            {
+                cubeStartupEngine,
+                destroyableCubeStartup
+            }, sortedEnginesGroup);
 
             void ComposeLayers()
             {
-                CubeLayerComposer.Compose(_engineRoot, time, orderedEngines);
+                CubeLayerComposer.Compose(_engineRoot, time, orderedEngines, functions);
                 EngineSyncLayerComposer.Compose(_engineRoot, entityInstanceManager, orderedEngines);
                 orderedEngines.Add(new TickEngine(entityScheduler));
             }
         }
 
-        private void AttachPlayerLoop(IStepEngine startupEngine, SortedEnginesGroup sortedEnginesGroup)
+        private void AttachPlayerLoop(IStepEngine[] startupEngines, SortedEnginesGroup sortedEnginesGroup)
         {
             PlayerLoopSystem sveltoInit = PlayerLoopHelper.SveltoInitialization.Create(() =>
             {
@@ -90,7 +97,11 @@ namespace Code.Infrastructure
                         return;
                     }
 
-                    startupEngine.Step();
+                    foreach (IStepEngine startupEngine in startupEngines)
+                    {
+                        startupEngine.Step();
+                    }
+
                     _initialized = true;
                 }
             });
