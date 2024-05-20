@@ -70,16 +70,16 @@ namespace Code.Infrastructure
 
             var startupEngines = new FasterList<IStepEngine>();
             var tickEngines = new FasterList<IStepEngine>();
-            
+
             ComposeLayers();
             AttachPlayerLoop();
 
             void ComposeLayers()
             {
-                Dictionary<TickType, FasterList<IStepEngine>> map = new()
+                Dictionary<TickType?, FasterList<IStepEngine>> map = new()
                 {
-                    {TickType.STARTUP, tickEngines},
-                    {TickType.TICK, startupEngines},
+                    {TickType.STARTUP, startupEngines},
+                    {TickType.TICK, tickEngines}
                 };
 
                 CubeLayerComposer.Compose(AddEngine, factory, cubeConfig, time);
@@ -89,9 +89,10 @@ namespace Code.Infrastructure
                 tickEngines.Add(tickEngine);
                 _engineRoot.AddEngine(tickEngine);
 
-                void AddEngine(TickType type, IEngine engine)
+
+                void AddEngine(TickType? type, IEngine engine)
                 {
-                    if (engine is IStepEngine stepEngine)
+                    if (type is not null && engine is IStepEngine stepEngine)
                     {
                         map[type].Add(stepEngine);
                     }

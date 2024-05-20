@@ -9,14 +9,15 @@ namespace Code.EngineViewSyncLayer.Infrastructure
 {
     public static class EngineSyncLayerComposer
     {
-        public static void Compose(Action<TickType, IEngine> addEngine, EntityInstanceManager<GameObject> instanceManager)
+        public static void Compose(Action<TickType?, IEngine> addEngine, EntityInstanceManager<GameObject> instanceManager)
         {
-            SyncEntityState syncEntityState = new(instanceManager);
+            SyncEntityState syncEntityStateReactionEngine = new(instanceManager);
 
             SyncPositionEngine syncPositionEngine = new(instanceManager);
             SyncRotationEngine syncRotationEngine = new(instanceManager);
 
-            addEngine(TickType.TICK, syncEntityState);
+            addEngine(null, syncEntityStateReactionEngine);
+            
             addEngine(TickType.TICK, syncPositionEngine);
             addEngine(TickType.TICK, syncRotationEngine);
         }
