@@ -46,6 +46,27 @@ namespace Code.CubeLayer
                 });
         }
 
+        public void CreateRevivable(in CubeConfig config)
+        {
+            EntityInitializer entityInitializer = CreateInternal<CubeWithReviveTimerDescriptor>(AliveCubes.BuildGroup);
+
+            Configure(ref entityInitializer, config);
+
+            entityInitializer
+                .InitChained(new DistanceTraveled
+                {
+                    From = entityInitializer.Get<Position>().Value
+                })
+                .InitChained(new DestroyDistance
+                {
+                    Value = Random.Range(config.MinDestroyDistance, config.MaxDestroyDistance)
+                })
+                .InitChained(new ReviveTimer
+                {
+                    Timer = config.RespawnTimer
+                });
+        }
+
         private ref EntityInitializer Configure(ref EntityInitializer entityInitializer, CubeConfig config)
         {
             Vector3 onUnit = Random.onUnitSphere;

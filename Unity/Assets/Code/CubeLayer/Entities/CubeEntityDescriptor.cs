@@ -27,4 +27,15 @@ namespace Code.CubeLayer.Entities
             });
         }
     }
+
+    public class CubeWithReviveTimerDescriptor : ExtendibleEntityDescriptor<CubeWithDistanceTraveledDescriptor>
+    {
+        public CubeWithReviveTimerDescriptor()
+        {
+            ExtendWith(new IComponentBuilder[]
+            {
+                new ComponentBuilder<ReviveTimer>()
+            });
+        }
+    }
 }

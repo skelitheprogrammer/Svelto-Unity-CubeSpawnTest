@@ -15,6 +15,9 @@ namespace Code.Infrastructure
             nameof(CubeEngineNames.FACE_DIRECTION),
             nameof(CubeEngineNames.CALCULATE_DISTANCE),
             nameof(CubeEngineNames.DESTROY_ON_DISTANCE),
+            nameof(CubeEngineNames.REVIVE_TICK),
+            nameof(CubeEngineNames.REVIVE),
+
 
             nameof(SyncEngineNames.SYNC_POSITION_ENGINE),
             nameof(SyncEngineNames.SYNC_ROTATION_ENGINE),

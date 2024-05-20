@@ -24,9 +24,16 @@ namespace Code.CubeLayer.Engines
                 _factory.Create(_config);
             }
 
+            /*
             for (int i = 0; i < _config.WithDistanceCount; i++)
             {
                 _factory.CreateDistanceTraveled(_config);
+            }
+            */
+
+            for (int i = 0; i < _config.WithDistanceCount; i++)
+            {
+                _factory.CreateRevivable(_config);
             }
         }
 

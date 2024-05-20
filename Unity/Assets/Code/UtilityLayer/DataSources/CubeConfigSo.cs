@@ -20,6 +20,8 @@ namespace Code.UtilityLayer.DataSources
         public float MinDestroyDistance;
         public float MaxDestroyDistance;
 
+        public float RespawnTimer;
+
 
         public float MinSpeed;
         public float MaxSpeed;

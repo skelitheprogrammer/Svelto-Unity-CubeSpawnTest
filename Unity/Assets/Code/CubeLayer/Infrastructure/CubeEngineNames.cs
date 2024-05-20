@@ -9,5 +9,8 @@
 
         CALCULATE_DISTANCE,
         DESTROY_ON_DISTANCE,
+
+        REVIVE_TICK,
+        REVIVE
     }
 }

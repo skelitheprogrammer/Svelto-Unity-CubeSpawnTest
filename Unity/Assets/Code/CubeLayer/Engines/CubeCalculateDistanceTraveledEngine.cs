@@ -3,12 +3,13 @@ using Code.CubeLayer.Infrastructure;
 using Code.TransformLayer.Entities.Components;
 using Svelto.Common;
 using Svelto.ECS;
+using Svelto.ECS.Internal;
 using UnityEngine;
 
 namespace Code.CubeLayer.Engines
 {
     [Sequenced(nameof(CubeEngineNames.CALCULATE_DISTANCE))]
-    public class CubeCalculateDistanceTraveledEngine : IQueryingEntitiesEngine, IStepEngine
+    public class CubeCalculateDistanceTraveledEngine : IQueryingEntitiesEngine, IStepEngine, IReactOnSwapEx<DistanceTraveled>
     {
         public void Ready()
         {
@@ -25,8 +26,17 @@ namespace Code.CubeLayer.Engines
                 for (int i = 0; i < count; i++)
                 {
                     distanceTraveleds[i].Value = Vector3.Distance(distanceTraveleds[i].From, positions[i].Value);
-                    Debug.Log(distanceTraveleds[i].Value);
                 }
+            }
+        }
+
+        public void MovedTo((uint start, uint end) rangeOfEntities, in EntityCollection<DistanceTraveled> entities, ExclusiveGroupStruct fromGroup, ExclusiveGroupStruct toGroup)
+        {
+            (var positions, var distanceTraveleds, int count) = entitiesDB.QueryEntities<Position, DistanceTraveled>(toGroup);
+
+            for (int i = 0; i < count; i++)
+            {
+                distanceTraveleds[i].From = positions[i].Value;
             }
         }
     }

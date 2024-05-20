@@ -18,12 +18,18 @@ namespace Code.CubeLayer.Infrastructure
             CubeCalculateDistanceTraveledEngine calculateDistanceTraveledEngine = new();
             DestroyCubesOnDistanceTraveled destroyCubesOnDistanceTraveled = new(functions);
 
+            TickReviveTimerEngine tickReviveTimerEngine = new(time);
+            ReviveCubeEngine reviveCubeEngine = new(functions);
+
 
             addEngine(TickType.STARTUP, cubeStartupEngine);
             addEngine(TickType.TICK, cubeMoveEngine);
             addEngine(TickType.TICK, cubeFaceMoveDirectionEngine);
             addEngine(TickType.TICK, calculateDistanceTraveledEngine);
             addEngine(TickType.TICK, destroyCubesOnDistanceTraveled);
+
+            addEngine(TickType.TICK, tickReviveTimerEngine);
+            addEngine(TickType.TICK, reviveCubeEngine);
         }
     }
 }

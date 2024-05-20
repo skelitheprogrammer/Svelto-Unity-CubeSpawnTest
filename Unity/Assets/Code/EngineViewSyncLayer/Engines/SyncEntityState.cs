@@ -45,6 +45,11 @@ namespace Code.EngineViewSyncLayer.Engines
                 {
                     _instanceManager.Remove(entityIds[i], buffer[i].ResourceId);
                 }
+
+                if (Alive.Includes(toGroup))
+                {
+                    _instanceManager.Add(entityIds[i], buffer[i].ResourceId);
+                }
             }
         }
     }
