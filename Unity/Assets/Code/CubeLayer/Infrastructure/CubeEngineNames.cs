@@ -2,9 +2,12 @@
 {
     public enum CubeEngineNames
     {
-        CUBE_STARTUP,
+        STARTUP,
 
-        CUBE_MOVE,
-        CUBE_FACE_DIRECTION
+        MOVE,
+        FACE_DIRECTION,
+
+        CALCULATE_DISTANCE,
+        DESTROY_ON_DISTANCE,
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Code.CubeLayer.Engines
 {
-    [Sequenced(nameof(CubeEngineNames.CUBE_FACE_DIRECTION))]
+    [Sequenced(nameof(CubeEngineNames.FACE_DIRECTION))]
     public class CubeFaceMoveDirectionEngine : IQueryingEntitiesEngine, IStepEngine
     {
         public void Ready()
@@ -27,6 +27,6 @@ namespace Code.CubeLayer.Engines
             }
         }
 
-        public string name => nameof(CubeEngineNames.CUBE_FACE_DIRECTION);
+        public string name => nameof(CubeEngineNames.FACE_DIRECTION);
     }
 }

@@ -7,11 +7,11 @@ using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines
 {
-    [Sequenced(nameof(CubeEngineNames.CUBE_MOVE))]
+    [Sequenced(nameof(CubeEngineNames.MOVE))]
     public class CubeMoveEngine : IStepEngine, IQueryingEntitiesEngine
     {
         public EntitiesDB entitiesDB { get; set; }
-        public string name => nameof(CubeEngineNames.CUBE_MOVE);
+        public string name => nameof(CubeEngineNames.MOVE);
 
         private readonly ITime _time;
 

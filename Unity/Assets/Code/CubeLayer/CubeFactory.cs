@@ -24,9 +24,30 @@ namespace Code.CubeLayer
 
         public void Create(in CubeConfig config)
         {
-            uint entityID = EntityIdStorage.Get();
-            EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityID, TransformableCubes.BuildGroup);
+            EntityInitializer entityInitializer = CreateInternal<CubeEntityDescriptor>(TransformableCubes.BuildGroup);
 
+            Configure(ref entityInitializer, config);
+        }
+
+        public void CreateDistanceTraveled(in CubeConfig config)
+        {
+            EntityInitializer entityInitializer = CreateInternal<CubeWithDistanceTraveledDescriptor>(AliveCubes.BuildGroup);
+
+            Configure(ref entityInitializer, config);
+
+            entityInitializer
+                .InitChained(new DistanceTraveled
+                {
+                    From = entityInitializer.Get<Position>().Value
+                })
+                .InitChained(new DestroyDistance
+                {
+                    Value = Random.Range(config.MinDestroyDistance, config.MaxDestroyDistance)
+                });
+        }
+
+        private ref EntityInitializer Configure(ref EntityInitializer entityInitializer, CubeConfig config)
+        {
             Vector3 onUnit = Random.onUnitSphere;
             float positionOffset = Random.Range(config.MinCenterOffset, config.MaxCenterOffset);
 
@@ -47,6 +68,16 @@ namespace Code.CubeLayer
                 {
                     ResourceId = _resourceIndex
                 });
+
+            return ref entityInitializer;
+        }
+
+        private EntityInitializer CreateInternal<T>(ExclusiveBuildGroup group) where T : IEntityDescriptor, new()
+        {
+            uint entityID = EntityIdStorage.Get();
+            EntityInitializer entityInitializer = _entityFactory.BuildEntity<T>(entityID, group);
+
+            return entityInitializer;
         }
     }
 }

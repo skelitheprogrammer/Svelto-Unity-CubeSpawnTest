@@ -9,7 +9,7 @@ namespace Code.Infrastructure
     {
         private static readonly string[] ENGINES_ORDER =
         {
-            nameof(CubeEngineNames.CUBE_STARTUP),
+            nameof(CubeEngineNames.STARTUP),
         };
 
         public string[] enginesOrder => ENGINES_ORDER;

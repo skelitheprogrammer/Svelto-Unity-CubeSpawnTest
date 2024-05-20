@@ -1,6 +1,7 @@
 ﻿using Code.EngineViewSyncLayer.Entities.Components;
 using Code.EngineViewSyncLayer.Infrastructure;
 using Code.EngineViewSyncLayer.Objects;
+using Code.TransformLayer;
 using Code.TransformLayer.Entities.Components;
 using Svelto.Common;
 using Svelto.ECS;
@@ -26,9 +27,7 @@ namespace Code.EngineViewSyncLayer.Engines
 
         public void Step()
         {
-            var groups = entitiesDB.FindGroups<ViewReference, Position>();
-            
-            foreach (var ((_, positions, entitiesID, count), groupId) in entitiesDB.QueryEntities<ViewReference, Position>(groups))
+            foreach (var ((_, positions, entitiesID, count), groupId) in entitiesDB.QueryEntities<ViewReference, Position>(Transformable.Groups))
             {
                 for (int i = 0; i < count; i++)
                 {

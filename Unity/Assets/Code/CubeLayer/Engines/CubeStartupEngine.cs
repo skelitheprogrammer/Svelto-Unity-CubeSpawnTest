@@ -5,7 +5,7 @@ using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines
 {
-    [Sequenced(nameof(CubeEngineNames.CUBE_STARTUP))]
+    [Sequenced(nameof(CubeEngineNames.STARTUP))]
     public class CubeStartupEngine : IStepEngine
     {
         private readonly CubeFactory _factory;
@@ -23,8 +23,13 @@ namespace Code.CubeLayer.Engines
             {
                 _factory.Create(_config);
             }
+
+            for (int i = 0; i < _config.WithDistanceCount; i++)
+            {
+                _factory.CreateDistanceTraveled(_config);
+            }
         }
 
-        public string name => nameof(CubeEngineNames.CUBE_STARTUP);
+        public string name => nameof(CubeEngineNames.STARTUP);
     }
 }

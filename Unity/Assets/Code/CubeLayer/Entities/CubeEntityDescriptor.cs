@@ -15,4 +15,16 @@ namespace Code.CubeLayer.Entities
             });
         }
     }
+
+    public class CubeWithDistanceTraveledDescriptor : ExtendibleEntityDescriptor<CubeEntityDescriptor>
+    {
+        public CubeWithDistanceTraveledDescriptor()
+        {
+            ExtendWith(new IComponentBuilder[]
+            {
+                new ComponentBuilder<DistanceTraveled>(),
+                new ComponentBuilder<DestroyDistance>()
+            });
+        }
+    }
 }

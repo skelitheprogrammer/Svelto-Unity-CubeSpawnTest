@@ -12,9 +12,14 @@ namespace Code.UtilityLayer.DataSources
     public class CubeConfig
     {
         public int Count;
+        public int WithDistanceCount;
 
         public float MinCenterOffset;
         public float MaxCenterOffset;
+
+        public float MinDestroyDistance;
+        public float MaxDestroyDistance;
+
 
         public float MinSpeed;
         public float MaxSpeed;

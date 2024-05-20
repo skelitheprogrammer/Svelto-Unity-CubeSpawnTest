@@ -61,7 +61,7 @@ namespace Code.Infrastructure
             ViewHandlerResourceManager<GameObject> gameObjectViewHandlerManager = new();
             EntityInstanceManager<GameObject> entityInstanceManager = new(gameObjectViewHandlerManager);
             GameObjectFactory gameObjectFactory = new(gameObjectViewHandlerManager);
-            
+
             ITime time = new UnityTime();
 
             #region CubeDependencies
@@ -75,7 +75,7 @@ namespace Code.Infrastructure
             gameObjectViewHandlerManager.RegisterHandler(cubeResourceIndex, cubeViewHandler);
 
             #endregion
-            
+
             ComposeLayers(out FasterList<IStepEngine> startupEngines, out FasterList<IStepEngine> tickEngines);
             AttachPlayerLoop();
 
@@ -83,17 +83,17 @@ namespace Code.Infrastructure
             {
                 Dictionary<TickType?, FasterList<IStepEngine>> map = new()
                 {
-                    {TickType.STARTUP,  startupEngines = new()},
+                    {TickType.STARTUP, startupEngines = new()},
                     {TickType.TICK, tickEngines = new()}
                 };
 
-                CubeLayerComposer.Compose(AddEngine, factory, cubeConfig, time);
+                CubeLayerComposer.Compose(AddEngine, factory, cubeConfig, time, functions);
                 EngineSyncLayerComposer.Compose(AddEngine, entityInstanceManager);
 
                 TickEngine tickEngine = new(entityScheduler);
                 tickEngines.Add(tickEngine);
                 _engineRoot.AddEngine(tickEngine);
-                
+
                 void AddEngine(TickType? type, IEngine engine)
                 {
                     if (type is not null && engine is IStepEngine stepEngine)

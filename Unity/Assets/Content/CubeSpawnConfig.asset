@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: CubeSpawnConfig
   m_EditorClassIdentifier: 
   <Config>k__BackingField:
-    Count: 100
+    Count: 0
+    WithDistanceCount: 1
     MinCenterOffset: 0
     MaxCenterOffset: 1
+    MinDestroyDistance: 5
+    MaxDestroyDistance: 5
     MinSpeed: 3
     MaxSpeed: 15
     Prefab: {fileID: 5377948438127170039, guid: 45986af55d4afec4d9dc0b136143538d,
