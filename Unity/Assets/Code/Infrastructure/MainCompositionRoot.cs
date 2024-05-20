@@ -47,16 +47,24 @@ namespace Code.Infrastructure
 
         private void CompositionRoot(MainContext contextHolder)
         {
+            #region Svelto Core
+
             EntitiesSubmissionScheduler entityScheduler = new();
             _engineRoot = new EnginesRoot(entityScheduler);
             IEntityFunctions functions = _engineRoot.GenerateEntityFunctions();
             IEntityFactory entityFactory = _engineRoot.GenerateEntityFactory();
+
+            #endregion
 
             CubeConfig cubeConfig = contextHolder.ConfigSO.Config;
 
             ViewHandlerResourceManager<GameObject> gameObjectViewHandlerManager = new();
             EntityInstanceManager<GameObject> entityInstanceManager = new(gameObjectViewHandlerManager);
             GameObjectFactory gameObjectFactory = new(gameObjectViewHandlerManager);
+            
+            ITime time = new UnityTime();
+
+            #region CubeDependencies
 
             ValueIndex cubeResourceIndex = gameObjectViewHandlerManager.Add(cubeConfig.Prefab);
 
@@ -66,20 +74,17 @@ namespace Code.Infrastructure
 
             gameObjectViewHandlerManager.RegisterHandler(cubeResourceIndex, cubeViewHandler);
 
-            ITime time = new UnityTime();
-
-            var startupEngines = new FasterList<IStepEngine>();
-            var tickEngines = new FasterList<IStepEngine>();
-
-            ComposeLayers();
+            #endregion
+            
+            ComposeLayers(out FasterList<IStepEngine> startupEngines, out FasterList<IStepEngine> tickEngines);
             AttachPlayerLoop();
 
-            void ComposeLayers()
+            void ComposeLayers(out FasterList<IStepEngine> startupEngines, out FasterList<IStepEngine> tickEngines)
             {
                 Dictionary<TickType?, FasterList<IStepEngine>> map = new()
                 {
-                    {TickType.STARTUP, startupEngines},
-                    {TickType.TICK, tickEngines}
+                    {TickType.STARTUP,  startupEngines = new()},
+                    {TickType.TICK, tickEngines = new()}
                 };
 
                 CubeLayerComposer.Compose(AddEngine, factory, cubeConfig, time);
@@ -88,8 +93,7 @@ namespace Code.Infrastructure
                 TickEngine tickEngine = new(entityScheduler);
                 tickEngines.Add(tickEngine);
                 _engineRoot.AddEngine(tickEngine);
-
-
+                
                 void AddEngine(TickType? type, IEngine engine)
                 {
                     if (type is not null && engine is IStepEngine stepEngine)
