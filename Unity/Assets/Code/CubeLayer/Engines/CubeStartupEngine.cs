@@ -1,8 +1,11 @@
-﻿using Code.UtilityLayer.DataSources;
+﻿using Code.CubeLayer.Infrastructure;
+using Code.UtilityLayer.DataSources;
+using Svelto.Common;
 using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines
 {
+    [Sequenced(nameof(CubeEngineNames.CUBE_STARTUP))]
     public class CubeStartupEngine : IStepEngine
     {
         private readonly CubeFactory _factory;
@@ -22,28 +25,6 @@ namespace Code.CubeLayer.Engines
             }
         }
 
-        public string name { get; set; }
-    }
-
-    public class DestroyableCubeStartup : IStepEngine
-    {
-        private readonly CubeFactory _factory;
-        private readonly DestroyableCubeConfig _config;
-
-        public DestroyableCubeStartup(CubeFactory factory, DestroyableCubeConfig config)
-        {
-            _factory = factory;
-            _config = config;
-        }
-
-        public void Step()
-        {
-            for (int i = 0; i < _config.Default.Count; i++)
-            {
-                _factory.CreateDestroyable(_config);
-            }
-        }
-
-        public string name { get; set; }
+        public string name => nameof(CubeEngineNames.CUBE_STARTUP);
     }
 }

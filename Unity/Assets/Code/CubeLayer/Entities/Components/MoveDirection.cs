@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.CubeLayer.Entities.Components
 {
-    public struct Direction : IEntityComponent
+    public struct MoveDirection : IEntityComponent
     {
         public Vector3 Value;
     }

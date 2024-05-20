@@ -1,7 +1,7 @@
 ﻿using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.CubeLayer.Entities.Components
+namespace Code.TransformLayer.Entities.Components
 {
     public struct Rotation : IEntityComponent
     {

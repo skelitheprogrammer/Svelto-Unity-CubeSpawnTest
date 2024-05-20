@@ -1,7 +1,8 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
 using Code.CubeLayer.Infrastructure;
-using Code.EngineViewSyncLayer.Components;
+using Code.EngineViewSyncLayer.Entities.Components;
+using Code.TransformLayer.Entities.Components;
 using Code.UtilityLayer;
 using Code.UtilityLayer.DataSources;
 using Svelto.DataStructures.Experimental;
@@ -12,8 +13,6 @@ namespace Code.CubeLayer
 {
     public class CubeFactory
     {
-        private readonly IdStorage _storage;
-
         private readonly IEntityFactory _entityFactory;
         private readonly ValueIndex _resourceIndex;
 
@@ -21,69 +20,33 @@ namespace Code.CubeLayer
         {
             _entityFactory = entityFactory;
             _resourceIndex = resourceIndex;
-            _storage = new();
         }
 
         public void Create(in CubeConfig config)
         {
-            uint entityID = _storage.Get();
-            EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityID, MovableCubes.BuildGroup);
+            uint entityID = EntityIdStorage.Get();
+            EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityID, TransformableCubes.BuildGroup);
 
             Vector3 onUnit = Random.onUnitSphere;
             float positionOffset = Random.Range(config.MinCenterOffset, config.MaxCenterOffset);
 
-            //imagine if this could be chained instead of 'void'
-            entityInitializer.Init(new Position
-            {
-                Value = onUnit * positionOffset
-            });
-            entityInitializer.Init(new Direction
-            {
-                Value = onUnit
-            });
-            entityInitializer.Init(new MoveSpeed
-            {
-                Value = Random.Range(config.MinSpeed, config.MaxSpeed)
-            });
-            entityInitializer.Init(new ViewReference
-            {
-                ResourceId = _resourceIndex
-            });
-        }
-
-        public void CreateDestroyable(in DestroyableCubeConfig destroyableCubeConfig)
-        {
-            uint entityID = _storage.Get();
-            EntityInitializer entityInitializer = _entityFactory.BuildEntity<DestroyableCubeEntityDescriptor>(entityID, MovableCubes.BuildGroup);
-
-            CubeConfig config = destroyableCubeConfig.Default;
-
-            Vector3 onUnit = Random.onUnitSphere;
-            float positionOffset = Random.Range(config.MinCenterOffset, config.MaxCenterOffset);
-            Vector3 position = onUnit * positionOffset;
-            
-            entityInitializer.Init(new Position
-            {
-                Value = position
-            });
-            entityInitializer.Init(new Direction
-            {
-                Value = onUnit
-            });
-            entityInitializer.Init(new MoveSpeed
-            {
-                Value = Random.Range(config.MinSpeed, config.MaxSpeed)
-            });
-            entityInitializer.Init(new ViewReference
-            {
-                ResourceId = _resourceIndex
-            });
-
-            entityInitializer.Init(new DistanceTraveled(position));
-            entityInitializer.Init(new DestroyDistance
-            {
-                Value = Random.Range(destroyableCubeConfig.MinDestroyDistance, destroyableCubeConfig.MaxDestroyDistance)
-            });
+            entityInitializer
+                .InitChained(new Position
+                {
+                    Value = onUnit * positionOffset
+                })
+                .InitChained(new MoveDirection
+                {
+                    Value = onUnit
+                })
+                .InitChained(new MoveSpeed
+                {
+                    Value = Random.Range(config.MinSpeed, config.MaxSpeed)
+                })
+                .InitChained(new ViewReference
+                {
+                    ResourceId = _resourceIndex
+                });
         }
     }
 }

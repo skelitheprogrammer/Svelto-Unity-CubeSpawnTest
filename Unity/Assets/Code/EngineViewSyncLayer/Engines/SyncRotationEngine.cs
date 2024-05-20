@@ -1,8 +1,7 @@
-﻿using Code.CubeLayer.Entities.Components;
-using Code.CubeLayer.Infrastructure;
-using Code.EngineViewSyncLayer.Components;
+﻿using Code.EngineViewSyncLayer.Entities.Components;
 using Code.EngineViewSyncLayer.Infrastructure;
 using Code.EngineViewSyncLayer.Objects;
+using Code.TransformLayer.Entities.Components;
 using Svelto.Common;
 using Svelto.ECS;
 using UnityEngine;
@@ -28,7 +27,9 @@ namespace Code.EngineViewSyncLayer.Engines
 
         public void Step()
         {
-            foreach (var ((_, positions, entitiesID, count), groupId) in entitiesDB.QueryEntities<ViewReference, Rotation>(Movable.Groups))
+            var groups = entitiesDB.FindGroups<ViewReference, Rotation>();
+
+            foreach (var ((_, positions, entitiesID, count), groupId) in entitiesDB.QueryEntities<ViewReference, Rotation>(groups))
             {
                 for (int i = 0; i < count; i++)
                 {

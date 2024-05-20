@@ -1,28 +1,22 @@
-﻿using Code.CubeLayer.Engines;
+﻿using System;
+using Code.CubeLayer.Engines;
+using Code.Infrastructure;
 using Code.UtilityLayer;
-using Svelto.DataStructures;
+using Code.UtilityLayer.DataSources;
 using Svelto.ECS;
 
 namespace Code.CubeLayer.Infrastructure
 {
     public static class CubeLayerComposer
     {
-        public static void Compose(EnginesRoot root, ITime time, FasterList<IStepEngine> orderedEngine, IEntityFunctions functions)
+        public static void Compose(Action<TickType, IStepEngine> addEngine, CubeFactory factory, CubeConfig config, ITime time)
         {
-            MoveCubeEngine moveCubeEngine = new(time);
-            FaceCubeDirectionEngine faceCubeDirectionEngine = new();
-            CalculateDistanceTraveledEngine calculateDistanceTraveledEngine = new();
-            DestroyOnDistanceTraveled destroyOnDistanceTraveled = new(functions);
+            CubeStartupEngine cubeStartupEngine = new(factory, config);
 
-            orderedEngine.Add(moveCubeEngine);
-            orderedEngine.Add(faceCubeDirectionEngine);
-            orderedEngine.Add(calculateDistanceTraveledEngine);
-            orderedEngine.Add(destroyOnDistanceTraveled);
+            CubeMoveEngine cubeMoveEngine = new(time);
 
-            root.AddEngine(moveCubeEngine);
-            root.AddEngine(faceCubeDirectionEngine);
-            root.AddEngine(calculateDistanceTraveledEngine);
-            root.AddEngine(destroyOnDistanceTraveled);
+            addEngine(TickType.STARTUP, cubeStartupEngine);
+            addEngine(TickType.TICK, cubeMoveEngine);
         }
     }
 }

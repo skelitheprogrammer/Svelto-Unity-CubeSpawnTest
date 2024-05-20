@@ -1,4 +1,4 @@
-﻿using Code.CubeLayer.DestroyableLayer.Infrastructure;
+﻿using Code.TransformLayer;
 using Svelto.ECS;
 
 namespace Code.CubeLayer.Infrastructure
@@ -7,16 +7,7 @@ namespace Code.CubeLayer.Infrastructure
     {
     }
 
-    public class Movable : GroupTag<Movable>
-    {
-    }
-
-    public class MovableCubes : GroupCompound<Cube, Movable>
-    {
-    }
-
-
-    public class DestroyedCubes : GroupCompound<Cube, Destroyed>
+    public class TransformableCubes : GroupCompound<Cube, Transformable>
     {
     }
 }

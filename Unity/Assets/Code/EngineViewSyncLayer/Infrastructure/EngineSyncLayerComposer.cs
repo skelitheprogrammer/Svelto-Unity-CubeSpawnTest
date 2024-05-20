@@ -1,6 +1,7 @@
-﻿using Code.EngineViewSyncLayer.Engines;
+﻿using System;
+using Code.EngineViewSyncLayer.Engines;
 using Code.EngineViewSyncLayer.Objects;
-using Svelto.DataStructures;
+using Code.Infrastructure;
 using Svelto.ECS;
 using UnityEngine;
 
@@ -8,17 +9,16 @@ namespace Code.EngineViewSyncLayer.Infrastructure
 {
     public static class EngineSyncLayerComposer
     {
-        public static void Compose(EnginesRoot root, EntityInstanceManager<GameObject> instanceManager, FasterList<IStepEngine> orderedEngines)
+        public static void Compose(Action<TickType, IEngine> addEngine, EntityInstanceManager<GameObject> instanceManager)
         {
+            SyncEntityState syncEntityState = new(instanceManager);
+
             SyncPositionEngine syncPositionEngine = new(instanceManager);
             SyncRotationEngine syncRotationEngine = new(instanceManager);
 
-            orderedEngines.Add(syncPositionEngine);
-            orderedEngines.Add(syncRotationEngine);
-
-            root.AddEngine(new SyncEntityState(instanceManager));
-            root.AddEngine(syncPositionEngine);
-            root.AddEngine(syncRotationEngine);
+            addEngine(TickType.TICK, syncEntityState);
+            addEngine(TickType.TICK, syncPositionEngine);
+            addEngine(TickType.TICK, syncRotationEngine);
         }
     }
 }
