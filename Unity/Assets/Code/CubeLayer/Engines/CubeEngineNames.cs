@@ -6,6 +6,7 @@
 
         UPDATE_SINE_WAVE,
         UPDATE_DIRECTION_SINE_WAVE,
+        UPDATE_POSITION_SINE_WAVE,
 
         MOVE,
         FACE_DIRECTION,

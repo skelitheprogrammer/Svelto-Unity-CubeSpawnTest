@@ -14,10 +14,9 @@ namespace Code.CubeLayer.Entities
                 new ComponentBuilder<MoveDirection>(),
                 new ComponentBuilder<ReviveTimer>(),
                 new ComponentBuilder<DistanceTraveled>(),
-                new ComponentBuilder<DestroyDistance>()
+                new ComponentBuilder<DestroyDistance>(),
+                new ComponentBuilder<SineWaveData>()
             });
         }
     }
-
-
 }

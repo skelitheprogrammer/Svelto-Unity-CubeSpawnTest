@@ -8,23 +8,15 @@ namespace Code.CubeLayer.Entities
     {
     }
 
-    public class SineWave : GroupTag<SineWave>
+    public class SineMovement : GroupTag<SineMovement>
     {
     }
 
-    public class WithTraveledDistance : GroupTag<WithTraveledDistance>
+    public class StraightLineCubes : GroupCompound<Cube, Transformable>
     {
     }
 
-    public class CubesWithTraveledDistance : GroupCompound<Cube, WithTraveledDistance>
-    {
-    }
-
-    public class TransformableCubes : GroupCompound<Cube, Transformable>
-    {
-    }
-
-    public class SineWaveCubes : GroupCompound<Cube, SineWave, Transformable>
+    public class SineWaveDirectionMovementCubes : GroupCompound<Cube, SineMovement, Transformable>
     {
     }
 
@@ -33,6 +25,14 @@ namespace Code.CubeLayer.Entities
     }
 
     public class AliveCubes : GroupCompound<Cube, Alive>
+    {
+    }
+
+    public class WithTraveledDistance : GroupTag<WithTraveledDistance>
+    {
+    }
+
+    public class CubesWithTraveledDistance : GroupCompound<Cube, WithTraveledDistance>
     {
     }
 }

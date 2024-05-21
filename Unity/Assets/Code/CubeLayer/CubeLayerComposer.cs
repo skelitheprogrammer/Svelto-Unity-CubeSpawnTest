@@ -20,7 +20,7 @@ namespace Code.CubeLayer
             CubeStartupEngine cubeStartupEngine = new(factory, config);
 
             UpdateSineWaveEngine updateSineWaveEngine = new(time);
-            UpdateDirectionSineWaveEngine updateDirectionSineWaveEngine = new();
+            UpdateDirectionSineWaveEngine updateDirectionSineWaveEngine = new(time);
 
             CubeMoveEngine cubeMoveEngine = new(time);
             FaceRotationTowardsMoveDirectionEngine faceRotationTowardsMoveDirectionEngine = new();
@@ -35,7 +35,7 @@ namespace Code.CubeLayer
 
             addEngine(TICK, updateSineWaveEngine);
             addEngine(TICK, updateDirectionSineWaveEngine);
-
+            
             addEngine(TICK, cubeMoveEngine);
             addEngine(TICK, faceRotationTowardsMoveDirectionEngine);
 

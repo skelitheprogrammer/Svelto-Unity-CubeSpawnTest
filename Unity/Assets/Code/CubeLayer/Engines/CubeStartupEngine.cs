@@ -22,12 +22,16 @@ namespace Code.CubeLayer.Engines
         {
             for (int i = 0; i < _config.Count; i++)
             {
-                _factory.Create(_config, TransformableCubes.BuildGroup);
+                _factory.Create(_config, StraightLineCubes.BuildGroup);
             }
 
+            for (int i = 0; i < _config.Count; i++)
+            {
+                _factory.Create(_config, SineWaveDirectionMovementCubes.BuildGroup);
+            }    
             /*for (int i = 0; i < _config.Count; i++)
             {
-                _factory.Create(_config, SineWaveCubes.BuildGroup);
+                _factory.Create(_config, SineWavePositionMovementCubes.BuildGroup);
             }*/
 
             /*

@@ -24,14 +24,13 @@ namespace Code.CubeLayer.Engines.Movement.SineWave
 
         public void Step()
         {
-            foreach (((var sineWaves, int count), _) in entitiesDB.QueryEntities<SineWaveData>(SineWaveCubes.Groups))
+            foreach (((var sineWaves, int count), _) in entitiesDB.QueryEntities<SineWaveData>(SineWaveDirectionMovementCubes.Groups))
             {
                 for (int i = 0; i < count; i++)
                 {
                     ref SineWaveData sineWave = ref sineWaves[i];
 
                     sineWave.Value = Mathf.Sin(_time.Time * sineWave.Frequency) * sineWave.Amplitude;
-                    
                 }
             }
         }

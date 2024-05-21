@@ -1,5 +1,5 @@
-﻿using Code.CubeLayer.Entities;
-using Code.CubeLayer.Entities.Components;
+﻿using Code.CubeLayer.Entities.Components;
+using Code.TransformLayer;
 using Code.TransformLayer.Entities.Components;
 using Code.UtilityLayer;
 using Svelto.Common;
@@ -22,7 +22,7 @@ namespace Code.CubeLayer.Engines.Movement
 
         public void Step()
         {
-            foreach (((var positions, var directions, var speeds, int count), _) in entitiesDB.QueryEntities<Position, MoveDirection, MoveSpeed>(TransformableCubes.Groups))
+            foreach (((var positions, var directions, var speeds, int count), _) in entitiesDB.QueryEntities<Position, MoveDirection, MoveSpeed>(Transformable.Groups))
             {
                 for (int i = 0; i < count; i++)
                 {

@@ -13,6 +13,7 @@ namespace Code.Infrastructure
         {
             nameof(CubeEngineNames.UPDATE_SINE_WAVE),
             nameof(CubeEngineNames.UPDATE_DIRECTION_SINE_WAVE),
+            //nameof(CubeEngineNames.UPDATE_POSITION_SINE_WAVE),
 
             nameof(CubeEngineNames.MOVE),
             nameof(CubeEngineNames.FACE_DIRECTION),
