@@ -1,12 +1,11 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
-using Code.CubeLayer.Infrastructure;
 using Code.TransformLayer.Entities.Components;
 using Svelto.Common;
 using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.CubeLayer.Engines
+namespace Code.CubeLayer.Engines.Movement
 {
     [Sequenced(nameof(CubeEngineNames.FACE_DIRECTION))]
     public class CubeFaceMoveDirectionEngine : IQueryingEntitiesEngine, IStepEngine

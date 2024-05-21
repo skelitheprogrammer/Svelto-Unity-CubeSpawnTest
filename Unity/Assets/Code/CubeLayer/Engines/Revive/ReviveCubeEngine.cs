@@ -1,11 +1,10 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
-using Code.CubeLayer.Infrastructure;
 using Svelto.Common;
 using Svelto.ECS;
 using Svelto.ECS.Internal;
 
-namespace Code.CubeLayer.Engines
+namespace Code.CubeLayer.Engines.Revive
 {
     [Sequenced(nameof(CubeEngineNames.REVIVE))]
     public class ReviveCubeEngine : IQueryingEntitiesEngine, IStepEngine, IReactOnSwapEx<ReviveTimer>

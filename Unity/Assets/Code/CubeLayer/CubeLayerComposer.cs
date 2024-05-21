@@ -1,11 +1,15 @@
 ﻿using System;
 using Code.CubeLayer.Engines;
+using Code.CubeLayer.Engines.DistanceTravel;
+using Code.CubeLayer.Engines.Movement;
+using Code.CubeLayer.Engines.Revive;
+using Code.CubeLayer.Services;
 using Code.Infrastructure;
 using Code.UtilityLayer;
 using Code.UtilityLayer.DataSources;
 using Svelto.ECS;
 
-namespace Code.CubeLayer.Infrastructure
+namespace Code.CubeLayer
 {
     public static class CubeLayerComposer
     {

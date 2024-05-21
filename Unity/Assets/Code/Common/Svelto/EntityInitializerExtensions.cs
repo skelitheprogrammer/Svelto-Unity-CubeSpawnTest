@@ -1,7 +1,7 @@
 ﻿using Svelto.ECS;
 using Svelto.ECS.Internal;
 
-namespace Code.CubeLayer
+namespace Code.Common.Svelto
 {
     public static class EntityInitializerExtensions
     {

@@ -1,12 +1,11 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
-using Code.CubeLayer.Infrastructure;
 using Code.TransformLayer.Entities.Components;
 using Code.UtilityLayer;
 using Svelto.Common;
 using Svelto.ECS;
 
-namespace Code.CubeLayer.Engines
+namespace Code.CubeLayer.Engines.Movement
 {
     [Sequenced(nameof(CubeEngineNames.MOVE))]
     public class CubeMoveEngine : IStepEngine, IQueryingEntitiesEngine

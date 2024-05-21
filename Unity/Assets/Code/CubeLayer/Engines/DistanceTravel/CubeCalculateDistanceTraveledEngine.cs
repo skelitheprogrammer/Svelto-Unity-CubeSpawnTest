@@ -1,12 +1,11 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
-using Code.CubeLayer.Infrastructure;
 using Code.TransformLayer.Entities.Components;
 using Svelto.Common;
 using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.CubeLayer.Engines
+namespace Code.CubeLayer.Engines.DistanceTravel
 {
     [Sequenced(nameof(CubeEngineNames.CALCULATE_DISTANCE))]
     public class CubeCalculateDistanceTraveledEngine : IQueryingEntitiesEngine, IStepEngine, IReactOnSwapEx<DistanceTraveled>

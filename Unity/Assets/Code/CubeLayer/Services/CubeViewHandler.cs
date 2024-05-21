@@ -2,7 +2,7 @@
 using Code.EngineViewSyncLayer.ViewSync;
 using UnityEngine;
 
-namespace Code.CubeLayer
+namespace Code.CubeLayer.Services
 {
     public class CubeViewHandler : IViewHandler<GameObject>
     {

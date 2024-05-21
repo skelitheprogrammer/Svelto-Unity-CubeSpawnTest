@@ -1,4 +1,5 @@
-﻿using Code.CubeLayer.Entities;
+﻿using Code.Common.Svelto;
+using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
 using Code.EngineViewSyncLayer.Entities.Components;
 using Code.TransformLayer.Entities.Components;
@@ -8,7 +9,7 @@ using Svelto.DataStructures.Experimental;
 using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.CubeLayer
+namespace Code.CubeLayer.Services
 {
     public class CubeFactory
     {
