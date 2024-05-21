@@ -11,31 +11,13 @@ namespace Code.CubeLayer.Entities
             ExtendWith(new IComponentBuilder[]
             {
                 new ComponentBuilder<MoveSpeed>(),
-                new ComponentBuilder<MoveDirection>()
-            });
-        }
-    }
-
-    public class CubeWithDistanceTraveledDescriptor : ExtendibleEntityDescriptor<CubeEntityDescriptor>
-    {
-        public CubeWithDistanceTraveledDescriptor()
-        {
-            ExtendWith(new IComponentBuilder[]
-            {
+                new ComponentBuilder<MoveDirection>(),
+                new ComponentBuilder<ReviveTimer>(),
                 new ComponentBuilder<DistanceTraveled>(),
                 new ComponentBuilder<DestroyDistance>()
             });
         }
     }
 
-    public class CubeWithReviveTimerDescriptor : ExtendibleEntityDescriptor<CubeWithDistanceTraveledDescriptor>
-    {
-        public CubeWithReviveTimerDescriptor()
-        {
-            ExtendWith(new IComponentBuilder[]
-            {
-                new ComponentBuilder<ReviveTimer>()
-            });
-        }
-    }
+
 }

@@ -24,7 +24,7 @@ namespace Code.CubeLayer.Engines
 
         public void Step()
         {
-            foreach ((var (distanceTraveleds, destroyDistances, ids, count), ExclusiveGroupStruct groupStruct) in entitiesDB.QueryEntities<DistanceTraveled, DestroyDistance>(AliveCubes.Groups))
+            foreach ((var (distanceTraveleds, destroyDistances, ids, count), ExclusiveGroupStruct groupStruct) in entitiesDB.QueryEntities<DistanceTraveled, DestroyDistance>(CubesWithTraveledDistance.Groups))
             {
                 for (int i = 0; i < count; i++)
                 {
@@ -36,7 +36,7 @@ namespace Code.CubeLayer.Engines
                     }
 
                     EGID egid = new(ids[i], groupStruct);
-                    _functions.SwapEntityGroup<CubeWithDistanceTraveledDescriptor>(egid, DestroyedCubes.BuildGroup);
+                    _functions.SwapEntityGroup<CubeEntityDescriptor>(egid, DestroyedCubes.BuildGroup);
                 }
             }
         }

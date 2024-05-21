@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: CubeSpawnConfig
   m_EditorClassIdentifier: 
   <Config>k__BackingField:
-    Count: 0
-    WithDistanceCount: 10
+    Count: 100
     MinCenterOffset: 0
     MaxCenterOffset: 1
     MinDestroyDistance: 10

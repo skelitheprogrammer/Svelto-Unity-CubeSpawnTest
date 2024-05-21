@@ -1,9 +1,9 @@
-﻿using Code.CubeLayer.Entities.Components;
+﻿using Code.CubeLayer.Entities;
+using Code.CubeLayer.Entities.Components;
 using Code.CubeLayer.Infrastructure;
 using Code.TransformLayer.Entities.Components;
 using Svelto.Common;
 using Svelto.ECS;
-using Svelto.ECS.Internal;
 using UnityEngine;
 
 namespace Code.CubeLayer.Engines
@@ -21,7 +21,7 @@ namespace Code.CubeLayer.Engines
 
         public void Step()
         {
-            foreach (((var positions, var distanceTraveleds, int count), _) in entitiesDB.QueryEntities<Position, DistanceTraveled>(TransformableCubes.Groups))
+            foreach (((var positions, var distanceTraveleds, int count), _) in entitiesDB.QueryEntities<Position, DistanceTraveled>(CubesWithTraveledDistance.Groups))
             {
                 for (int i = 0; i < count; i++)
                 {

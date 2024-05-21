@@ -7,12 +7,11 @@ namespace Code.UtilityLayer.DataSources
     {
         [field: SerializeField] public CubeConfig Config { get; private set; }
     }
-
+    
     [System.Serializable]
     public class CubeConfig
     {
         public int Count;
-        public int WithDistanceCount;
 
         public float MinCenterOffset;
         public float MaxCenterOffset;
@@ -22,11 +21,8 @@ namespace Code.UtilityLayer.DataSources
 
         public float RespawnTimer;
 
-
         public float MinSpeed;
         public float MaxSpeed;
-
-        //Could be assetReference from addressables
 
         public GameObject Prefab;
     }

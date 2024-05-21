@@ -1,4 +1,5 @@
-﻿using Code.CubeLayer.Infrastructure;
+﻿using Code.CubeLayer.Entities;
+using Code.CubeLayer.Infrastructure;
 using Code.UtilityLayer.DataSources;
 using Svelto.Common;
 using Svelto.ECS;
@@ -21,7 +22,7 @@ namespace Code.CubeLayer.Engines
         {
             for (int i = 0; i < _config.Count; i++)
             {
-                _factory.Create(_config);
+                _factory.Create(_config, TransformableCubes.BuildGroup);
             }
 
             /*
@@ -31,10 +32,10 @@ namespace Code.CubeLayer.Engines
             }
             */
 
-            for (int i = 0; i < _config.WithDistanceCount; i++)
+            /*for (int i = 0; i < _config.WithDistanceCount; i++)
             {
                 _factory.CreateRevivable(_config);
-            }
+            }*/
         }
 
         public string name => nameof(CubeEngineNames.STARTUP);

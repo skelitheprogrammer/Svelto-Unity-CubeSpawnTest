@@ -1,6 +1,5 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
-using Code.CubeLayer.Infrastructure;
 using Code.EngineViewSyncLayer.Entities.Components;
 using Code.TransformLayer.Entities.Components;
 using Code.UtilityLayer;
@@ -22,53 +21,11 @@ namespace Code.CubeLayer
             _resourceIndex = resourceIndex;
         }
 
-        public void Create(in CubeConfig config)
+        public void Create(in CubeConfig config, ExclusiveBuildGroup buildGroup)
         {
-            EntityInitializer entityInitializer = CreateInternal<CubeEntityDescriptor>(TransformableCubes.BuildGroup);
+            uint entityId = EntityIdStorage.Get();
+            EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityId, buildGroup);
 
-            Configure(ref entityInitializer, config);
-        }
-
-        public void CreateDistanceTraveled(in CubeConfig config)
-        {
-            EntityInitializer entityInitializer = CreateInternal<CubeWithDistanceTraveledDescriptor>(AliveCubes.BuildGroup);
-
-            Configure(ref entityInitializer, config);
-
-            entityInitializer
-                .InitChained(new DistanceTraveled
-                {
-                    From = entityInitializer.Get<Position>().Value
-                })
-                .InitChained(new DestroyDistance
-                {
-                    Value = Random.Range(config.MinDestroyDistance, config.MaxDestroyDistance)
-                });
-        }
-
-        public void CreateRevivable(in CubeConfig config)
-        {
-            EntityInitializer entityInitializer = CreateInternal<CubeWithReviveTimerDescriptor>(AliveCubes.BuildGroup);
-
-            Configure(ref entityInitializer, config);
-
-            entityInitializer
-                .InitChained(new DistanceTraveled
-                {
-                    From = entityInitializer.Get<Position>().Value
-                })
-                .InitChained(new DestroyDistance
-                {
-                    Value = Random.Range(config.MinDestroyDistance, config.MaxDestroyDistance)
-                })
-                .InitChained(new ReviveTimer
-                {
-                    Timer = config.RespawnTimer
-                });
-        }
-
-        private ref EntityInitializer Configure(ref EntityInitializer entityInitializer, CubeConfig config)
-        {
             Vector3 onUnit = Random.onUnitSphere;
             float positionOffset = Random.Range(config.MinCenterOffset, config.MaxCenterOffset);
 
@@ -88,17 +45,28 @@ namespace Code.CubeLayer
                 .InitChained(new ViewReference
                 {
                     ResourceId = _resourceIndex
+                })
+                .InitChained(new DistanceTraveled
+                {
+                    From = entityInitializer.Get<Position>().Value
+                })
+                .InitChained(new DestroyDistance
+                {
+                    Value = Random.Range(config.MinDestroyDistance, config.MaxDestroyDistance)
+                })
+                .InitChained(new ReviveTimer
+                {
+                    Timer = config.RespawnTimer
+                })
+                .InitChained(new DistanceTraveled
+                {
+                    From = entityInitializer.Get<Position>().Value
+                })
+                .InitChained(new DestroyDistance
+                {
+                    Value = Random.Range(config.MinDestroyDistance, config.MaxDestroyDistance)
                 });
-
-            return ref entityInitializer;
         }
-
-        private EntityInitializer CreateInternal<T>(ExclusiveBuildGroup group) where T : IEntityDescriptor, new()
-        {
-            uint entityID = EntityIdStorage.Get();
-            EntityInitializer entityInitializer = _entityFactory.BuildEntity<T>(entityID, group);
-
-            return entityInitializer;
-        }
+        
     }
 }

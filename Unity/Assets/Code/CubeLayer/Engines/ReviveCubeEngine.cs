@@ -31,7 +31,7 @@ namespace Code.CubeLayer.Engines
                     if (timers[i].Value <= 0)
                     {
                         EGID egid = new(entityIDs[i], exclusiveGroupStruct);
-                        _functions.SwapEntityGroup<CubeWithDistanceTraveledDescriptor>(egid, AliveCubes.BuildGroup);
+                        _functions.SwapEntityGroup<CubeEntityDescriptor>(egid, AliveCubes.BuildGroup);
                     }
                 }
             }
