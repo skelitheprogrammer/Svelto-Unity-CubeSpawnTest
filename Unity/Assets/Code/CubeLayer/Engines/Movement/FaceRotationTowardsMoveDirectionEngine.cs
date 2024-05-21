@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Code.CubeLayer.Engines.Movement
 {
     [Sequenced(nameof(CubeEngineNames.FACE_DIRECTION))]
-    public class CubeFaceMoveDirectionEngine : IQueryingEntitiesEngine, IStepEngine
+    public class FaceRotationTowardsMoveDirectionEngine : IQueryingEntitiesEngine, IStepEngine
     {
         public void Ready()
         {

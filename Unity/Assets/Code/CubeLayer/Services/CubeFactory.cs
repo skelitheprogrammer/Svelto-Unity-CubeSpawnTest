@@ -66,8 +66,13 @@ namespace Code.CubeLayer.Services
                 .InitChained(new DestroyDistance
                 {
                     Value = Random.Range(config.MinDestroyDistance, config.MaxDestroyDistance)
+                })
+                .InitChained(new SineWaveData
+                {
+                    Amplitude = Random.Range(config.MinAmplitude, config.MaxAmplitude),
+                    Frequency = Random.Range(config.MinFrequency, config.MaxFrequency),
+                    Axis = config.SineWaveAxis
                 });
         }
-        
     }
 }

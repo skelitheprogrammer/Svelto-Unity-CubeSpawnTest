@@ -2,12 +2,14 @@
 using Code.CubeLayer.Engines;
 using Code.CubeLayer.Engines.DistanceTravel;
 using Code.CubeLayer.Engines.Movement;
+using Code.CubeLayer.Engines.Movement.SineWave;
 using Code.CubeLayer.Engines.Revive;
 using Code.CubeLayer.Services;
 using Code.Infrastructure;
 using Code.UtilityLayer;
 using Code.UtilityLayer.DataSources;
 using Svelto.ECS;
+using static Code.Infrastructure.TickType;
 
 namespace Code.CubeLayer
 {
@@ -16,8 +18,12 @@ namespace Code.CubeLayer
         public static void Compose(Action<TickType?, IEngine> addEngine, CubeFactory factory, CubeConfig config, ITime time, IEntityFunctions functions)
         {
             CubeStartupEngine cubeStartupEngine = new(factory, config);
+
+            UpdateSineWaveEngine updateSineWaveEngine = new(time);
+            UpdateDirectionSineWaveEngine updateDirectionSineWaveEngine = new();
+
             CubeMoveEngine cubeMoveEngine = new(time);
-            CubeFaceMoveDirectionEngine cubeFaceMoveDirectionEngine = new();
+            FaceRotationTowardsMoveDirectionEngine faceRotationTowardsMoveDirectionEngine = new();
 
             CubeCalculateDistanceTraveledEngine calculateDistanceTraveledEngine = new();
             DestroyCubesOnDistanceTraveled destroyCubesOnDistanceTraveled = new(functions);
@@ -25,15 +31,19 @@ namespace Code.CubeLayer
             TickReviveTimerEngine tickReviveTimerEngine = new(time);
             ReviveCubeEngine reviveCubeEngine = new(functions);
 
+            addEngine(STARTUP, cubeStartupEngine);
 
-            addEngine(TickType.STARTUP, cubeStartupEngine);
-            addEngine(TickType.TICK, cubeMoveEngine);
-            addEngine(TickType.TICK, cubeFaceMoveDirectionEngine);
-            addEngine(TickType.TICK, calculateDistanceTraveledEngine);
-            addEngine(TickType.TICK, destroyCubesOnDistanceTraveled);
+            addEngine(TICK, updateSineWaveEngine);
+            addEngine(TICK, updateDirectionSineWaveEngine);
 
-            addEngine(TickType.TICK, tickReviveTimerEngine);
-            addEngine(TickType.TICK, reviveCubeEngine);
+            addEngine(TICK, cubeMoveEngine);
+            addEngine(TICK, faceRotationTowardsMoveDirectionEngine);
+
+            addEngine(TICK, calculateDistanceTraveledEngine);
+            addEngine(TICK, destroyCubesOnDistanceTraveled);
+
+            addEngine(TICK, tickReviveTimerEngine);
+            addEngine(TICK, reviveCubeEngine);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Code.UtilityLayer.DataSources
     {
         [field: SerializeField] public CubeConfig Config { get; private set; }
     }
-    
+
     [System.Serializable]
     public class CubeConfig
     {
@@ -23,6 +23,14 @@ namespace Code.UtilityLayer.DataSources
 
         public float MinSpeed;
         public float MaxSpeed;
+
+        public float MinAmplitude;
+        public float MaxAmplitude;
+
+        public float MinFrequency;
+        public float MaxFrequency;
+
+        public Vector3 SineWaveAxis;
 
         public GameObject Prefab;
     }

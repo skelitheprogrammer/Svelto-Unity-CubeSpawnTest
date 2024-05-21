@@ -25,6 +25,11 @@ namespace Code.CubeLayer.Engines
                 _factory.Create(_config, TransformableCubes.BuildGroup);
             }
 
+            /*for (int i = 0; i < _config.Count; i++)
+            {
+                _factory.Create(_config, SineWaveCubes.BuildGroup);
+            }*/
+
             /*
             for (int i = 0; i < _config.WithDistanceCount; i++)
             {

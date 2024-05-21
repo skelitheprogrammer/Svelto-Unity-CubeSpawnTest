@@ -11,13 +11,15 @@ namespace Code.Infrastructure
     {
         private static readonly string[] ENGINES_ORDER =
         {
+            nameof(CubeEngineNames.UPDATE_SINE_WAVE),
+            nameof(CubeEngineNames.UPDATE_DIRECTION_SINE_WAVE),
+
             nameof(CubeEngineNames.MOVE),
             nameof(CubeEngineNames.FACE_DIRECTION),
             nameof(CubeEngineNames.CALCULATE_DISTANCE),
             nameof(CubeEngineNames.DESTROY_ON_DISTANCE),
             nameof(CubeEngineNames.REVIVE_TICK),
             nameof(CubeEngineNames.REVIVE),
-
 
             nameof(SyncEngineNames.SYNC_POSITION_ENGINE),
             nameof(SyncEngineNames.SYNC_ROTATION_ENGINE),
