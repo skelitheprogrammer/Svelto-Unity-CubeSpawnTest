@@ -13,18 +13,75 @@ MonoBehaviour:
   m_Name: CubeSpawnConfig
   m_EditorClassIdentifier: 
   <Config>k__BackingField:
-    Count: 1
-    MinCenterOffset: 0
-    MaxCenterOffset: 1
-    MinDestroyDistance: 10
-    MaxDestroyDistance: 15
-    RespawnTimer: 4
-    MinSpeed: 3
-    MaxSpeed: 15
-    MinAmplitude: 1
-    MaxAmplitude: 2
-    MinFrequency: 1
-    MaxFrequency: 2
-    SineWaveAxis: {x: 0, y: 1, z: 0}
+    Settings:
+    - Count:
+        rid: 5445433004539510803
+      SpawnPositionType:
+        rid: 5445433004539510804
+      MoveSpeed:
+        rid: 5445433004539510811
     Prefab: {fileID: 5377948438127170039, guid: 45986af55d4afec4d9dc0b136143538d,
       type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 5445433004539510803
+      type: {class: ValueReferenceInt, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 100
+    - rid: 5445433004539510804
+      type: {class: AroundSphereSpawnPositionType, ns: Code.Common.DataConfigSystem,
+        asm: Assembly-CSharp}
+      data:
+        ValueModifier:
+          rid: 5445433004539510806
+    - rid: 5445433004539510806
+      type: {class: MinMaxRangeUnityFloat, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        Min:
+          rid: 5445433004539510807
+        Max:
+          rid: 5445433004539510808
+    - rid: 5445433004539510807
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 3
+    - rid: 5445433004539510808
+      type: {class: MinMaxRangeUnityFloat, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        Min:
+          rid: 5445433004539510809
+        Max:
+          rid: 5445433004539510810
+    - rid: 5445433004539510809
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 6
+    - rid: 5445433004539510810
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 10
+    - rid: 5445433004539510811
+      type: {class: MinMaxRangeUnityFloat, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        Min:
+          rid: 5445433004539510812
+        Max:
+          rid: 5445433004539510813
+    - rid: 5445433004539510812
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 3
+    - rid: 5445433004539510813
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 6

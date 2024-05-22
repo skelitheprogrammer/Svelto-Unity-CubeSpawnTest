@@ -1,13 +1,12 @@
-﻿using Code.Common.Svelto;
+﻿using Code.Common.DataConfigSystem;
+using Code.Common.Svelto;
 using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
 using Code.EngineViewSyncLayer.Entities.Components;
 using Code.TransformLayer.Entities.Components;
 using Code.UtilityLayer;
-using Code.UtilityLayer.DataSources;
 using Svelto.DataStructures.Experimental;
 using Svelto.ECS;
-using UnityEngine;
 
 namespace Code.CubeLayer.Services
 {
@@ -22,7 +21,7 @@ namespace Code.CubeLayer.Services
             _resourceIndex = resourceIndex;
         }
 
-        public void Create(in CubeConfig config, ExclusiveBuildGroup buildGroup)
+        /*public void Create(in CubeConfig config, ExclusiveBuildGroup buildGroup)
         {
             uint entityId = EntityIdStorage.Get();
             EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityId, buildGroup);
@@ -72,6 +71,34 @@ namespace Code.CubeLayer.Services
                     Amplitude = Random.Range(config.MinAmplitude, config.MaxAmplitude),
                     Frequency = Random.Range(config.MinFrequency, config.MaxFrequency),
                     Axis = config.SineWaveAxis
+                });
+        }*/
+
+        public void Create(in CubeSettings config, ExclusiveBuildGroup buildGroup)
+        {
+            uint entityId = EntityIdStorage.Get();
+            EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityId, buildGroup);
+
+            entityInitializer
+                .InitChained(new Position
+                {
+                    Value = config.SpawnPositionType.Apply()
+                })
+                .InitChained(new MoveDirection
+                {
+                    Value = config.SpawnPositionType.Apply()
+                })
+                .InitChained(new MoveSpeed
+                {
+                    Value = config.MoveSpeed.Reference
+                })
+                .InitChained(new ViewReference
+                {
+                    ResourceId = _resourceIndex
+                })
+                .InitChained(new DistanceTraveled
+                {
+                    From = entityInitializer.Get<Position>().Value
                 });
         }
     }

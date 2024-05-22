@@ -1,4 +1,5 @@
-﻿using Code.CubeLayer.Entities;
+﻿using Code.Common.DataConfigSystem;
+using Code.CubeLayer.Entities;
 using Code.CubeLayer.Services;
 using Code.UtilityLayer.DataSources;
 using Svelto.Common;
@@ -20,7 +21,15 @@ namespace Code.CubeLayer.Engines
 
         public void Step()
         {
-            for (int i = 0; i < _config.Count; i++)
+            foreach (CubeSettings configSetting in _config.Settings)
+            {
+                for (int i = 0; i < configSetting.Count.Reference; i++)
+                {
+                    _factory.Create(configSetting, StraightLineCubes.BuildGroup);
+                }
+            }
+
+            /*for (int i = 0; i < _config.Count; i++)
             {
                 _factory.Create(_config, StraightLineCubes.BuildGroup);
             }
@@ -28,7 +37,7 @@ namespace Code.CubeLayer.Engines
             for (int i = 0; i < _config.Count; i++)
             {
                 _factory.Create(_config, SineWaveDirectionMovementCubes.BuildGroup);
-            }    
+            }    */
             /*for (int i = 0; i < _config.Count; i++)
             {
                 _factory.Create(_config, SineWavePositionMovementCubes.BuildGroup);

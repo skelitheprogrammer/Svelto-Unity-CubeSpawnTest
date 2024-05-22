@@ -457,6 +457,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConfigSO: {fileID: 11400000, guid: 75f9a174de565944ca1c4165c48e1abc, type: 2}
+  Settings:
+    Count:
+      rid: 5445433004539510788
+  references:
+    version: 2
+    RefIds:
+    - rid: 5445433004539510788
+      type: {class: ValueReferenceInt, ns: Code.Common.DataConfigSystem.ValueReference,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 3
 --- !u!4 &2020557479
 Transform:
   m_ObjectHideFlags: 0

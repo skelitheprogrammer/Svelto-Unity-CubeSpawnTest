@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Code.Common.DataConfigSystem;
+using UnityEngine;
 
 namespace Code.UtilityLayer.DataSources
 {
@@ -11,6 +12,7 @@ namespace Code.UtilityLayer.DataSources
     [System.Serializable]
     public class CubeConfig
     {
+        /*
         public int Count;
 
         public float MinCenterOffset;
@@ -31,6 +33,9 @@ namespace Code.UtilityLayer.DataSources
         public float MaxFrequency;
 
         public Vector3 SineWaveAxis;
+        */
+
+        public CubeSettings[] Settings;
 
         public GameObject Prefab;
     }
