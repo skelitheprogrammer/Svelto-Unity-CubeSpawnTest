@@ -24,63 +24,9 @@ namespace Code.CubeLayer.Services
             _resourceIndex = resourceIndex;
         }
 
-        /*public void Create(in CubeConfig config, ExclusiveBuildGroup buildGroup)
-        {
-            uint entityId = EntityIdStorage.Get();
-            EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityId, buildGroup);
-
-            Vector3 onUnit = Random.onUnitSphere;
-            float positionOffset = Random.Range(config.MinCenterOffset, config.MaxCenterOffset);
-
-            entityInitializer
-                .InitChained(new Position
-                {
-                    Value = onUnit * positionOffset
-                })
-                .InitChained(new MoveDirection
-                {
-                    Value = onUnit
-                })
-                .InitChained(new MoveSpeed
-                {
-                    Value = Random.Range(config.MinSpeed, config.MaxSpeed)
-                })
-                .InitChained(new ViewReference
-                {
-                    ResourceId = _resourceIndex
-                })
-                .InitChained(new DistanceTraveled
-                {
-                    From = entityInitializer.Get<Position>().Value
-                })
-                .InitChained(new DestroyDistance
-                {
-                    Value = Random.Range(config.MinDestroyDistance, config.MaxDestroyDistance)
-                })
-                .InitChained(new ReviveTimer
-                {
-                    Timer = config.RespawnTimer
-                })
-                .InitChained(new DistanceTraveled
-                {
-                    From = entityInitializer.Get<Position>().Value
-                })
-                .InitChained(new DestroyDistance
-                {
-                    Value = Random.Range(config.MinDestroyDistance, config.MaxDestroyDistance)
-                })
-                .InitChained(new SineWaveData
-                {
-                    Amplitude = Random.Range(config.MinAmplitude, config.MaxAmplitude),
-                    Frequency = Random.Range(config.MinFrequency, config.MaxFrequency),
-                    Axis = config.SineWaveAxis
-                });
-        }*/
-
         public void Create(in CubeSettings config)
         {
             uint entityId = EntityIdStorage.Get();
-
 
             EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityId, config.MovementType.BuildGroup);
 

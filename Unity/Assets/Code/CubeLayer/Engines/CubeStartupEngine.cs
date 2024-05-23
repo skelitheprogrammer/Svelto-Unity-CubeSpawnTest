@@ -34,32 +34,6 @@ namespace Code.CubeLayer.Engines
                     _factory.Create(settings);
                 }
             }
-
-            /*for (int i = 0; i < _config.Count; i++)
-            {
-                _factory.Create(_config, StraightLineCubes.BuildGroup);
-            }
-
-            for (int i = 0; i < _config.Count; i++)
-            {
-                _factory.Create(_config, SineWaveDirectionMovementCubes.BuildGroup);
-            }    */
-            /*for (int i = 0; i < _config.Count; i++)
-            {
-                _factory.Create(_config, SineWavePositionMovementCubes.BuildGroup);
-            }*/
-
-            /*
-            for (int i = 0; i < _config.WithDistanceCount; i++)
-            {
-                _factory.CreateDistanceTraveled(_config);
-            }
-            */
-
-            /*for (int i = 0; i < _config.WithDistanceCount; i++)
-            {
-                _factory.CreateRevivable(_config);
-            }*/
         }
 
         public string name => nameof(CubeEngineNames.STARTUP);
