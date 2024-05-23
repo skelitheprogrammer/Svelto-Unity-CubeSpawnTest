@@ -5,7 +5,7 @@ using Code.EngineViewSyncLayer.Infrastructure;
 using Code.EngineViewSyncLayer.Objects;
 using Code.Ticking;
 using Code.UtilityLayer;
-using Code.UtilityLayer.DataSources;
+using Code.UtilityLayer.DataSources.CubeConfig;
 using Code.UtilityLayer.PlayerLoop;
 using PlayerLoopExtender;
 using Svelto.Context;

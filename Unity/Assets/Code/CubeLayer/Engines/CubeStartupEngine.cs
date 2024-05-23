@@ -1,7 +1,6 @@
-﻿using Code.Common.DataConfigSystem;
-using Code.CubeLayer.Entities;
+﻿using System;
 using Code.CubeLayer.Services;
-using Code.UtilityLayer.DataSources;
+using Code.UtilityLayer.DataSources.CubeConfig;
 using Svelto.Common;
 using Svelto.ECS;
 
@@ -21,11 +20,18 @@ namespace Code.CubeLayer.Engines
 
         public void Step()
         {
-            foreach (CubeSettings configSetting in _config.Settings)
+            foreach (ICubeSettings cubeSettings in _config.CubeSettings)
             {
-                for (int i = 0; i < configSetting.Count.Reference; i++)
+                CubeSettings settings = cubeSettings switch
                 {
-                    _factory.Create(configSetting, StraightLineCubes.BuildGroup);
+                    CubeSettings def => def,
+                    CubeSettingsReference cubeSettingsReference => cubeSettingsReference,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+
+                for (int i = 0; i < settings.Count.Reference; i++)
+                {
+                    _factory.Create(settings);
                 }
             }
 

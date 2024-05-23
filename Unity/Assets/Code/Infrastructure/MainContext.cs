@@ -1,4 +1,4 @@
-﻿using Code.UtilityLayer.DataSources;
+﻿using Code.UtilityLayer.DataSources.CubeConfig;
 using Svelto.Context;
 
 namespace Code.Infrastructure

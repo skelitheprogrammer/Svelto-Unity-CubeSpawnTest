@@ -1,12 +1,15 @@
-﻿using Code.Common.DataConfigSystem;
+﻿using System;
 using Code.Common.Svelto;
 using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
 using Code.EngineViewSyncLayer.Entities.Components;
 using Code.TransformLayer.Entities.Components;
 using Code.UtilityLayer;
+using Code.UtilityLayer.DataSources.CubeConfig;
 using Svelto.DataStructures.Experimental;
 using Svelto.ECS;
+using UnityEngine;
+using SineWaveData = Code.CubeLayer.Entities.Components.SineWaveData;
 
 namespace Code.CubeLayer.Services
 {
@@ -74,32 +77,50 @@ namespace Code.CubeLayer.Services
                 });
         }*/
 
-        public void Create(in CubeSettings config, ExclusiveBuildGroup buildGroup)
+        public void Create(in CubeSettings config)
         {
             uint entityId = EntityIdStorage.Get();
-            EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityId, buildGroup);
+
+
+            EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityId, config.MovementType.BuildGroup);
 
             entityInitializer
                 .InitChained(new Position
                 {
-                    Value = config.SpawnPositionType.Apply()
+                    Value = config.SpawnStrategy.GetSpawnPosition()
                 })
                 .InitChained(new MoveDirection
                 {
-                    Value = config.SpawnPositionType.Apply()
-                })
-                .InitChained(new MoveSpeed
-                {
-                    Value = config.MoveSpeed.Reference
+                    Value = config.DirectionStrategy.GetDirection()
                 })
                 .InitChained(new ViewReference
                 {
                     ResourceId = _resourceIndex
                 })
-                .InitChained(new DistanceTraveled
-                {
-                    From = entityInitializer.Get<Position>().Value
-                });
+                ;
+
+            switch (config.MovementType)
+            {
+                case SineWaveMovementStrategy sineWaveMovementStrategy:
+                    entityInitializer.InitChained(new MoveSpeed
+                    {
+                        Value = sineWaveMovementStrategy.Speed.Reference
+                    }).InitChained(new SineWaveData
+                    {
+                        Axis = Vector3.up,
+                        Amplitude = sineWaveMovementStrategy.SineWaveData.Amplitude.Reference,
+                        Frequency = sineWaveMovementStrategy.SineWaveData.Frequency.Reference,
+                    });
+                    break;
+                case StraightLineMovementStrategy straightLineMovementStrategy:
+                    entityInitializer.InitChained(new MoveSpeed
+                    {
+                        Value = straightLineMovementStrategy.Speed.Reference
+                    });
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using Code.CubeLayer.Engines.Revive;
 using Code.CubeLayer.Services;
 using Code.Infrastructure;
 using Code.UtilityLayer;
-using Code.UtilityLayer.DataSources;
+using Code.UtilityLayer.DataSources.CubeConfig;
 using Svelto.ECS;
 using static Code.Infrastructure.TickType;
 

@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d70dc50afb214768a1071ce19098e909, type: 3}
-  m_Name: CubeSpawnConfig
+  m_Name: TestCubeSpawnConfig
   m_EditorClassIdentifier: 
   <Config>k__BackingField:
     CubeSettings:
     - rid: 5445433021308600337
-    - rid: 5445433021308600359
     Prefab: {fileID: 5377948438127170039, guid: 45986af55d4afec4d9dc0b136143538d,
       type: 3}
   references:
@@ -25,7 +24,3 @@ MonoBehaviour:
       type: {class: CubeSettingsReference, ns: Code.Common.DataConfigSystem, asm: Assembly-CSharp}
       data:
         Reference: {fileID: 11400000, guid: fc61de38ee31b9545b432cc80d8fd0dd, type: 2}
-    - rid: 5445433021308600359
-      type: {class: CubeSettingsReference, ns: Code.Common.DataConfigSystem, asm: Assembly-CSharp}
-      data:
-        Reference: {fileID: 11400000, guid: 1d781c40376830a419cba442b3fda443, type: 2}
