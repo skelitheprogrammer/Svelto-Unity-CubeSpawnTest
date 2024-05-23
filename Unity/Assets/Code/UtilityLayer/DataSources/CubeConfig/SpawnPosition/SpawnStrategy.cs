@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Code.Common.DataConfigSystem.ValueReference;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,7 +15,7 @@ namespace Code.UtilityLayer.DataSources.CubeConfig
     public class SpawnPositionStrategy
     {
         public SpawnPositionType Type;
-        [SerializeReference, SubclassSelector] public IValueReferenceFloat[] Modifiers;
+        [SerializeReference, SubclassSelector] public ISpawnModifier[] Modifiers;
     }
 
     public static class SpawnPositionExtensions
@@ -30,7 +29,12 @@ namespace Code.UtilityLayer.DataSources.CubeConfig
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            return strategy.Modifiers.Aggregate(position, (current, valueReferenceFloat) => current * valueReferenceFloat.Reference);
+            foreach (ISpawnModifier strategyModifier in strategy.Modifiers)
+            {
+                strategyModifier.Apply(ref position);
+            }
+
+            return position;
         }
     }
 }
