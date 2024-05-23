@@ -37,7 +37,7 @@ namespace Code.CubeLayer.Services
                     break;
             }
 
-            EntityInitializer initializer = _entityFactory.BuildEntity(entityId, config.MovementType.BuildGroup, dynamicEntityDescriptor);
+            EntityInitializer initializer = _entityFactory.BuildEntity(entityId, AliveCubes.BuildGroup, dynamicEntityDescriptor);
 
             initializer
                 .InitChained(new Position

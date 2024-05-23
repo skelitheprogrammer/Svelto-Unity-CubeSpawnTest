@@ -19,6 +19,8 @@ namespace Code.CubeLayer
         {
             CubeStartupEngine cubeStartupEngine = new(factory, config);
 
+            AddCubesToSineMoveFilter addCubesToSineMoveFilter = new();
+
             UpdateSineWaveEngine updateSineWaveEngine = new(time);
             UpdateDirectionSineWaveEngine updateDirectionSineWaveEngine = new(time);
 
@@ -31,11 +33,13 @@ namespace Code.CubeLayer
             TickReviveTimerEngine tickReviveTimerEngine = new(time);
             ReviveCubeEngine reviveCubeEngine = new(functions);
 
+            addEngine(null, addCubesToSineMoveFilter);
+
             addEngine(STARTUP, cubeStartupEngine);
 
             addEngine(TICK, updateSineWaveEngine);
             addEngine(TICK, updateDirectionSineWaveEngine);
-            
+
             addEngine(TICK, cubeMoveEngine);
             addEngine(TICK, faceRotationTowardsMoveDirectionEngine);
 

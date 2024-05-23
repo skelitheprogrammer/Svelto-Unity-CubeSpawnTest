@@ -1,5 +1,4 @@
-﻿using Code.CubeLayer.Entities;
-using Code.CubeLayer.Entities.Components;
+﻿using Code.CubeLayer.Entities.Components;
 using Code.UtilityLayer;
 using Svelto.Common;
 using Svelto.ECS;
@@ -12,10 +11,12 @@ namespace Code.CubeLayer.Engines.Movement.SineWave
     {
         public void Ready()
         {
+            _filters = entitiesDB.GetFilters();
         }
 
         public EntitiesDB entitiesDB { get; set; }
         private ITime _time;
+        private EntitiesDB.SveltoFilters _filters;
 
         public UpdateSineWaveEngine(ITime time)
         {
@@ -24,11 +25,13 @@ namespace Code.CubeLayer.Engines.Movement.SineWave
 
         public void Step()
         {
-            foreach (((var sineWaves, int count), _) in entitiesDB.QueryEntities<SineWaveData>(SineWaveDirectionMovementCubes.Groups))
+            foreach ((EntityFilterIndices indices, ExclusiveGroupStruct exclusiveGroupStruct) in _filters.GetPersistentFilter<SineWaveData>(CubeFilters.SineMovableCubes))
             {
-                for (int i = 0; i < count; i++)
+                (var sineWaves, int _) = entitiesDB.QueryEntities<SineWaveData>(exclusiveGroupStruct);
+
+                for (int i = 0; i < indices.count; i++)
                 {
-                    ref SineWaveData sineWave = ref sineWaves[i];
+                    ref SineWaveData sineWave = ref sineWaves[indices[i]];
 
                     sineWave.Value = Mathf.Sin(_time.Time * sineWave.Frequency) * sineWave.Amplitude;
                 }

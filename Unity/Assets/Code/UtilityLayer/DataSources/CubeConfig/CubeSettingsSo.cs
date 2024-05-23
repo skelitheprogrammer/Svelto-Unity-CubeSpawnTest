@@ -1,5 +1,4 @@
 ﻿using Code.Common.DataConfigSystem.ValueReference;
-using Code.Common.DataConfigSystem.ValueReference.Unmanaged;
 using UnityEngine;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig

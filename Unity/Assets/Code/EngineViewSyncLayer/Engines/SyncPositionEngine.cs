@@ -1,7 +1,7 @@
-﻿using Code.EngineViewSyncLayer.Entities.Components;
+﻿using Code.CubeLayer.Entities;
+using Code.EngineViewSyncLayer.Entities.Components;
 using Code.EngineViewSyncLayer.Infrastructure;
 using Code.EngineViewSyncLayer.Objects;
-using Code.TransformLayer;
 using Code.TransformLayer.Entities.Components;
 using Svelto.Common;
 using Svelto.ECS;
@@ -27,13 +27,18 @@ namespace Code.EngineViewSyncLayer.Engines
 
         public void Step()
         {
-            foreach (var ((_, positions, entitiesID, count), groupId) in entitiesDB.QueryEntities<ViewReference, Position>(Transformable.Groups))
+            var groups = entitiesDB.FindGroups<ViewReference, Position>();
+
+            foreach (var ((_, positions, entitiesID, count), groupStruct) in entitiesDB.QueryEntities<ViewReference, Position>(groups))
             {
-                for (int i = 0; i < count; i++)
+                if (AliveCubes.Includes(groupStruct))
                 {
-                    EGID entityId = new(entitiesID[i], groupId);
-                    Position position = positions[i];
-                    _instanceManager[entityId.entityID].transform.position = position.Value;
+                    for (int i = 0; i < count; i++)
+                    {
+                        EGID entityId = new(entitiesID[i], groupStruct);
+                        Position position = positions[i];
+                        _instanceManager[entityId.entityID].transform.position = position.Value;
+                    }
                 }
             }
         }

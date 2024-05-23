@@ -1,7 +1,5 @@
 ﻿using Code.Common.DataConfigSystem.ValueReference;
 using Code.Common.DataConfigSystem.ValueReference.Unmanaged;
-using Code.CubeLayer.Entities;
-using Svelto.ECS;
 using UnityEngine;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig
@@ -15,7 +13,6 @@ namespace Code.UtilityLayer.DataSources.CubeConfig
 
     public abstract class MovementStrategy
     {
-        public abstract ExclusiveBuildGroup BuildGroup { get; }
     }
 
 
@@ -23,7 +20,6 @@ namespace Code.UtilityLayer.DataSources.CubeConfig
     public class StraightLineMovementStrategy : MovementStrategy
     {
         [SerializeReference, SubclassSelector] public IValueReferenceFloat Speed = new ValueReferenceFloat();
-        public override ExclusiveBuildGroup BuildGroup => StraightLineCubes.BuildGroup;
     }
 
     [System.Serializable]
@@ -31,7 +27,6 @@ namespace Code.UtilityLayer.DataSources.CubeConfig
     {
         [SerializeReference, SubclassSelector] public IValueReferenceFloat Speed = new ValueReferenceFloat();
         public SineWaveData SineWaveData;
-        public override ExclusiveBuildGroup BuildGroup => SineWaveDirectionMovementCubes.BuildGroup;
     }
 
     [System.Serializable]
