@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Config>k__BackingField:
     CubeSettings:
-    - rid: 5445433021308600337
+    - rid: 5445433021308600378
     Prefab: {fileID: 5377948438127170039, guid: 45986af55d4afec4d9dc0b136143538d,
       type: 3}
   references:
     version: 2
     RefIds:
-    - rid: 5445433021308600337
-      type: {class: CubeSettingsReference, ns: Code.Common.DataConfigSystem, asm: Assembly-CSharp}
+    - rid: 5445433021308600378
+      type: {class: CubeSettingsReference, ns: Code.UtilityLayer.DataSources.CubeConfig,
+        asm: Assembly-CSharp}
       data:
         Reference: {fileID: 11400000, guid: fc61de38ee31b9545b432cc80d8fd0dd, type: 2}
