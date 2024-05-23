@@ -1,5 +1,4 @@
-﻿using System;
-using Code.Common.Svelto;
+﻿using Code.Common.Svelto;
 using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
 using Code.EngineViewSyncLayer.Entities.Components;
@@ -27,10 +26,20 @@ namespace Code.CubeLayer.Services
         public void Create(in CubeSettings config)
         {
             uint entityId = EntityIdStorage.Get();
+            DynamicEntityDescriptor<CubeEntityDescriptor> dynamicEntityDescriptor = DynamicEntityDescriptor<CubeEntityDescriptor>.CreateDynamicEntityDescriptor();
 
-            EntityInitializer entityInitializer = _entityFactory.BuildEntity<CubeEntityDescriptor>(entityId, config.MovementType.BuildGroup);
+            switch (config.MovementType)
+            {
+                case SineWaveMovementStrategy:
+                    dynamicEntityDescriptor.Add<SineWaveData>();
+                    break;
+                case StraightLineMovementStrategy:
+                    break;
+            }
 
-            entityInitializer
+            EntityInitializer initializer = _entityFactory.BuildEntity(entityId, config.MovementType.BuildGroup, dynamicEntityDescriptor);
+
+            initializer
                 .InitChained(new Position
                 {
                     Value = config.SpawnStrategy.GetSpawnPosition()
@@ -48,24 +57,25 @@ namespace Code.CubeLayer.Services
             switch (config.MovementType)
             {
                 case SineWaveMovementStrategy sineWaveMovementStrategy:
-                    entityInitializer.InitChained(new MoveSpeed
-                    {
-                        Value = sineWaveMovementStrategy.Speed.Reference
-                    }).InitChained(new SineWaveData
-                    {
-                        Axis = Vector3.up,
-                        Amplitude = sineWaveMovementStrategy.SineWaveData.Amplitude.Reference,
-                        Frequency = sineWaveMovementStrategy.SineWaveData.Frequency.Reference,
-                    });
+                    initializer
+                        .InitChained(new MoveSpeed
+                        {
+                            Value = sineWaveMovementStrategy.Speed.Reference
+                        })
+                        .InitChained(new SineWaveData
+                        {
+                            Axis = Vector3.up,
+                            Amplitude = sineWaveMovementStrategy.SineWaveData.Amplitude.Reference,
+                            Frequency = sineWaveMovementStrategy.SineWaveData.Frequency.Reference,
+                        });
                     break;
                 case StraightLineMovementStrategy straightLineMovementStrategy:
-                    entityInitializer.InitChained(new MoveSpeed
-                    {
-                        Value = straightLineMovementStrategy.Speed.Reference
-                    });
+                    initializer
+                        .InitChained(new MoveSpeed
+                        {
+                            Value = straightLineMovementStrategy.Speed.Reference
+                        });
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
     }
