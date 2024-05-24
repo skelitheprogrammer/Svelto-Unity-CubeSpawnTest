@@ -20,8 +20,15 @@ namespace Code.CubeLayer.Engines.DistanceTravel
 
         public void Step()
         {
-            foreach (((var positions, var distanceTraveleds, int count), _) in entitiesDB.QueryEntities<Position, DistanceTraveled>(CubesWithTraveledDistance.Groups))
+            var groups = entitiesDB.FindGroups<Position, DistanceTraveled>();
+
+            foreach (((var positions, var distanceTraveleds, int count), var groupStruct) in entitiesDB.QueryEntities<Position, DistanceTraveled>(groups))
             {
+                if (!AliveCubes.Includes(groupStruct))
+                {
+                    continue;
+                }
+
                 for (int i = 0; i < count; i++)
                 {
                     distanceTraveleds[i].Value = Vector3.Distance(distanceTraveleds[i].From, positions[i].Value);
@@ -31,7 +38,12 @@ namespace Code.CubeLayer.Engines.DistanceTravel
 
         public void MovedTo((uint start, uint end) rangeOfEntities, in EntityCollection<DistanceTraveled> entities, ExclusiveGroupStruct fromGroup, ExclusiveGroupStruct toGroup)
         {
-            (var positions, var distanceTraveleds, int count) = entitiesDB.QueryEntities<Position, DistanceTraveled>(toGroup);
+            if (!AliveCubes.Includes(toGroup))
+            {
+                return;
+            }
+
+            var (positions, distanceTraveleds, count) = entitiesDB.QueryEntities<Position, DistanceTraveled>(toGroup);
 
             for (int i = 0; i < count; i++)
             {

@@ -7,7 +7,6 @@ namespace Code.CubeLayer.Entities
     {
     }
     
-    
     public class AliveCubes : GroupCompound<Cube, Alive>
     {
     }
@@ -16,11 +15,4 @@ namespace Code.CubeLayer.Entities
     {
     }
     
-    public class WithTraveledDistance : GroupTag<WithTraveledDistance>
-    {
-    }
-
-    public class CubesWithTraveledDistance : GroupCompound<Cube, WithTraveledDistance>
-    {
-    }
 }

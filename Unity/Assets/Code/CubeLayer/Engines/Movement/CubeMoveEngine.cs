@@ -19,6 +19,10 @@ namespace Code.CubeLayer.Engines.Movement
         {
             _time = time;
         }
+        
+        public void Ready()
+        {
+        }
 
         public void Step()
         {
@@ -34,10 +38,6 @@ namespace Code.CubeLayer.Engines.Movement
                     }
                 }
             }
-        }
-
-        public void Ready()
-        {
         }
     }
 }

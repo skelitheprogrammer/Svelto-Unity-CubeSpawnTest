@@ -18,10 +18,11 @@ namespace Code.UtilityLayer.DataSources.CubeConfig
     [System.Serializable]
     public class CubeSettings : ICubeSettings
     {
-        [SerializeReference, SubclassSelector] public MovementStrategy MovementType;
         [SerializeReference, SubclassSelector] public IValueReferenceInt Count;
-        public SpawnPositionStrategy SpawnStrategy;
-        public DirectionStrategy DirectionStrategy;
+        [SerializeReference, SubclassSelector] public MovementStrategy MovementType;
+        public DirectionType DirectionType;
+        public SpawnPositionType SpawnType;
+        [SerializeReference, SubclassSelector] public IEntityAttribute[] Attributes;
     }
 
     [System.Serializable]

@@ -28,7 +28,9 @@ namespace Code.CubeLayer
             FaceRotationTowardsMoveDirectionEngine faceRotationTowardsMoveDirectionEngine = new();
 
             CubeCalculateDistanceTraveledEngine calculateDistanceTraveledEngine = new();
-            DestroyCubesOnDistanceTraveled destroyCubesOnDistanceTraveled = new(functions);
+            DestroyCubesOnDistanceTraveled destroyCubesOnDistanceTraveled = new();
+
+            CubeDeathEngine cubeDeathEngine = new(functions);
 
             TickReviveTimerEngine tickReviveTimerEngine = new(time);
             ReviveCubeEngine reviveCubeEngine = new(functions);
@@ -46,8 +48,10 @@ namespace Code.CubeLayer
             addEngine(TICK, calculateDistanceTraveledEngine);
             addEngine(TICK, destroyCubesOnDistanceTraveled);
 
-            addEngine(TICK, tickReviveTimerEngine);
-            addEngine(TICK, reviveCubeEngine);
+            addEngine(TICK, cubeDeathEngine);
+
+            //addEngine(TICK, tickReviveTimerEngine);
+            //addEngine(TICK, reviveCubeEngine);
         }
     }
 }

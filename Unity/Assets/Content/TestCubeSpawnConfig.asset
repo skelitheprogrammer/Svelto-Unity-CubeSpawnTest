@@ -24,4 +24,4 @@ MonoBehaviour:
       type: {class: CubeSettingsReference, ns: Code.UtilityLayer.DataSources.CubeConfig,
         asm: Assembly-CSharp}
       data:
-        Reference: {fileID: 11400000, guid: fc61de38ee31b9545b432cc80d8fd0dd, type: 2}
+        Reference: {fileID: 11400000, guid: aad305016380dd449b983a808e1e64f5, type: 2}

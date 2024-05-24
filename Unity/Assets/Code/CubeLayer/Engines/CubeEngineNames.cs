@@ -6,13 +6,14 @@
 
         UPDATE_SINE_WAVE,
         UPDATE_DIRECTION_SINE_WAVE,
-        UPDATE_POSITION_SINE_WAVE,
 
         MOVE,
         FACE_DIRECTION,
 
         CALCULATE_DISTANCE,
         DESTROY_ON_DISTANCE,
+
+        KILL_CUBE,
 
         REVIVE_TICK,
         REVIVE

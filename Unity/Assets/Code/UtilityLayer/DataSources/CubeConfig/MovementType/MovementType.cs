@@ -4,17 +4,9 @@ using UnityEngine;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig
 {
-    public enum MovementType
-    {
-        STRAIGHT_LINE,
-        SINE_WAVE
-    }
-
-
     public abstract class MovementStrategy
     {
     }
-
 
     [System.Serializable]
     public class StraightLineMovementStrategy : MovementStrategy

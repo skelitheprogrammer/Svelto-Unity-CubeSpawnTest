@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9a811a47b246daa23b41c8855392ca, type: 3}
-  m_Name: 1_SineWave_LinearSpeed
+  m_Name: 1_StraightLine_LinearSpeed
   m_EditorClassIdentifier: 
   <Settings>k__BackingField:
     Count:
       rid: 5445433021308600376
     MovementType:
-      rid: 5445433043096961027
+      rid: 5445433025813807113
     DirectionType: 6
-    SpawnType: 1
+    SpawnType: 0
     Attributes: []
   references:
     version: 2
@@ -28,29 +28,14 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         <Reference>k__BackingField: 1
-    - rid: 5445433043096961027
-      type: {class: SineWaveMovementStrategy, ns: Code.UtilityLayer.DataSources.CubeConfig,
+    - rid: 5445433025813807113
+      type: {class: StraightLineMovementStrategy, ns: Code.UtilityLayer.DataSources.CubeConfig,
         asm: Assembly-CSharp}
       data:
         Speed:
-          rid: 5445433043096961028
-        SineWaveData:
-          Frequency:
-            rid: 5445433043096961029
-          Amplitude:
-            rid: 5445433043096961030
-    - rid: 5445433043096961028
+          rid: 5445433025813807114
+    - rid: 5445433025813807114
       type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
         asm: Assembly-CSharp}
       data:
-        <Reference>k__BackingField: 1
-    - rid: 5445433043096961029
-      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
-        asm: Assembly-CSharp}
-      data:
-        <Reference>k__BackingField: 0
-    - rid: 5445433043096961030
-      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
-        asm: Assembly-CSharp}
-      data:
-        <Reference>k__BackingField: 0
+        <Reference>k__BackingField: 6
