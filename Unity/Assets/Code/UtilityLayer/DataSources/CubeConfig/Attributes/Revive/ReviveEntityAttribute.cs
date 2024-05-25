@@ -1,7 +1,7 @@
 ﻿using Code.Common.DataConfigSystem.ValueReference;
 using UnityEngine;
 
-namespace Code.UtilityLayer.DataSources.CubeConfig
+namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive
 {
     [System.Serializable]
     public partial class ReviveEntityAttribute : IEntityAttribute

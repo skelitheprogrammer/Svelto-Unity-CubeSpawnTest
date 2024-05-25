@@ -2,7 +2,7 @@
 using Code.Common.DataConfigSystem.ValueReference.Unmanaged;
 using UnityEngine;
 
-namespace Code.UtilityLayer.DataSources.CubeConfig
+namespace Code.UtilityLayer.DataSources.CubeConfig.MovementType
 {
     public abstract class MovementStrategy
     {

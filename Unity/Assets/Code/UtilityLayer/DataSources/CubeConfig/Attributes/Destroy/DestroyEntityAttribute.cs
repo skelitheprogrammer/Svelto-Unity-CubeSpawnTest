@@ -3,7 +3,7 @@ using Code.Common.DataConfigSystem.ValueReference;
 using Code.Common.DataConfigSystem.ValueReference.Unmanaged;
 using UnityEngine;
 
-namespace Code.UtilityLayer.DataSources.CubeConfig
+namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
 {
     [Serializable]
     public partial class DestroyEntityAttribute : IEntityAttribute

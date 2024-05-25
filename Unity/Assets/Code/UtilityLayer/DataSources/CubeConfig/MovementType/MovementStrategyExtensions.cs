@@ -3,7 +3,7 @@ using Code.CubeLayer.Entities.Components;
 using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.UtilityLayer.DataSources.CubeConfig
+namespace Code.UtilityLayer.DataSources.CubeConfig.MovementType
 {
     public static class MovementStrategyExtensions
     {

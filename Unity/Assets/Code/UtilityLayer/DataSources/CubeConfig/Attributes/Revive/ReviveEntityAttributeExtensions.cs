@@ -3,7 +3,7 @@ using System.Linq;
 using Code.CubeLayer.Entities.Components;
 using Svelto.ECS;
 
-namespace Code.UtilityLayer.DataSources.CubeConfig
+namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive
 {
     public static class ReviveEntityAttributeExtensions
     {

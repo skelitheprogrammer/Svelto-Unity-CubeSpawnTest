@@ -1,4 +1,4 @@
-﻿namespace Code.UtilityLayer.DataSources.CubeConfig
+﻿namespace Code.UtilityLayer.DataSources.CubeConfig.SpawnPosition
 {
     public enum SpawnPositionType
     {

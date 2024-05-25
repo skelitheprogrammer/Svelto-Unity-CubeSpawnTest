@@ -1,7 +1,7 @@
 ﻿using Code.CubeLayer.Entities.Components;
 using Svelto.ECS;
 
-namespace Code.CubeLayer.Engines
+namespace Code.CubeLayer.Engines.Movement.SineWave
 {
     public class AddCubesToSineMoveFilter : IQueryingEntitiesEngine, IReactOnAddAndRemoveEx<SineWaveData>
     {

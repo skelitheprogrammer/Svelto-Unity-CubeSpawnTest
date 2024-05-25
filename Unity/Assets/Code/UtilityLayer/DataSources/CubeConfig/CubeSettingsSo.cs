@@ -1,4 +1,8 @@
 ﻿using Code.Common.DataConfigSystem.ValueReference;
+using Code.UtilityLayer.DataSources.CubeConfig.Attributes;
+using Code.UtilityLayer.DataSources.CubeConfig.MovementType;
+using Code.UtilityLayer.DataSources.CubeConfig.SetDirection;
+using Code.UtilityLayer.DataSources.CubeConfig.SpawnPosition;
 using UnityEngine;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig

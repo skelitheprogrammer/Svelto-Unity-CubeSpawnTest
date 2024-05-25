@@ -1,7 +1,9 @@
 ﻿using System;
+using Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy;
+using Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive;
 using Svelto.ECS;
 
-namespace Code.UtilityLayer.DataSources.CubeConfig
+namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes
 {
     public interface IEntityAttribute
     {
