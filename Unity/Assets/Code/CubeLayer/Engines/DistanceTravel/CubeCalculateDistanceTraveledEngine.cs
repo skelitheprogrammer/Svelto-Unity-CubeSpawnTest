@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Code.CubeLayer.Engines.DistanceTravel
 {
     [Sequenced(nameof(CubeEngineNames.CALCULATE_DISTANCE))]
-    public class CubeCalculateDistanceTraveledEngine : IQueryingEntitiesEngine, IStepEngine, IReactOnSwapEx<DistanceTraveled>
+    public class CubeCalculateDistanceTraveledEngine : IQueryingEntitiesEngine, IStepEngine, IReactOnSwapEx<DistanceTraveled>, IReactOnAddEx<DistanceTraveled>
     {
         public void Ready()
         {
@@ -44,6 +44,21 @@ namespace Code.CubeLayer.Engines.DistanceTravel
             }
 
             var (positions, distanceTraveleds, count) = entitiesDB.QueryEntities<Position, DistanceTraveled>(toGroup);
+
+            for (int i = 0; i < count; i++)
+            {
+                distanceTraveleds[i].From = positions[i].Value;
+            }
+        }
+
+        public void Add((uint start, uint end) rangeOfEntities, in EntityCollection<DistanceTraveled> entities, ExclusiveGroupStruct groupID)
+        {
+            if (!AliveCubes.Includes(groupID))
+            {
+                return;
+            }
+
+            var (positions, distanceTraveleds, count) = entitiesDB.QueryEntities<Position, DistanceTraveled>(groupID);
 
             for (int i = 0; i < count; i++)
             {

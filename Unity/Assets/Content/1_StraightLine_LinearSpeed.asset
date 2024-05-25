@@ -19,10 +19,46 @@ MonoBehaviour:
       rid: 5445433025813807113
     DirectionType: 6
     SpawnType: 0
-    Attributes: []
+    Attributes:
+    - rid: 5150531954180882432
+    - rid: 5150531954545262592
   references:
     version: 2
     RefIds:
+    - rid: 5150531954180882432
+      type: {class: DestroyEntityAttribute, ns: Code.UtilityLayer.DataSources.CubeConfig,
+        asm: Assembly-CSharp}
+      data:
+        Conditions:
+        - rid: 5150531954180882433
+    - rid: 5150531954180882433
+      type: {class: DestroyEntityAttribute/DistanceReachCondition, ns: Code.UtilityLayer.DataSources.CubeConfig,
+        asm: Assembly-CSharp}
+      data:
+        DestroyDistance:
+          rid: 5150531954180882434
+    - rid: 5150531954180882434
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 3
+    - rid: 5150531954545262592
+      type: {class: ReviveEntityAttribute, ns: Code.UtilityLayer.DataSources.CubeConfig,
+        asm: Assembly-CSharp}
+      data:
+        Conditions:
+        - rid: 5150531954545262594
+    - rid: 5150531954545262594
+      type: {class: ReviveEntityAttribute/ReviveAfterTimeCondition, ns: Code.UtilityLayer.DataSources.CubeConfig,
+        asm: Assembly-CSharp}
+      data:
+        Timer:
+          rid: 5150531954545262598
+    - rid: 5150531954545262598
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 3
     - rid: 5445433021308600376
       type: {class: ValueReferenceInt, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
         asm: Assembly-CSharp}

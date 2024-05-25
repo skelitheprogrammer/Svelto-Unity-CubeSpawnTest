@@ -28,6 +28,7 @@ namespace Code.CubeLayer.Services
             DynamicEntityDescriptor<CubeEntityDescriptor> dynamicEntityDescriptor = DynamicEntityDescriptor<CubeEntityDescriptor>.CreateDynamicEntityDescriptor();
 
             config.MovementType.ApplyStrategyToDescriptor(ref dynamicEntityDescriptor);
+            config.Attributes.ApplyAttributesToDescriptor(ref dynamicEntityDescriptor);
 
             EntityInitializer initializer = _entityFactory.BuildEntity(entityId, AliveCubes.BuildGroup, dynamicEntityDescriptor);
 
@@ -49,9 +50,7 @@ namespace Code.CubeLayer.Services
                 ;
 
             config.MovementType.ApplyStrategyToInitializer(ref initializer);
-
-            bool has = initializer.Has<DistanceTraveled>();
-            Debug.Log(has);
+            config.Attributes.ApplyAttributesToInitializer(ref initializer);
         }
     }
 }

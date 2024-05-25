@@ -1,26 +1,27 @@
-﻿using Code.Common.DataConfigSystem.ValueReference;
+﻿using System;
+using Code.Common.DataConfigSystem.ValueReference;
 using Code.Common.DataConfigSystem.ValueReference.Unmanaged;
 using UnityEngine;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig
 {
-    [System.Serializable]
+    [Serializable]
     public partial class DestroyEntityAttribute : IEntityAttribute
     {
-        [SerializeReference, SubclassSelector] public ICondition[] Conditions;
+        public interface IDestroyCondition : ICondition
+        {
+            
+        }
+        
+        [SerializeReference, SubclassSelector] public IDestroyCondition[] Conditions;
     }
 
     public partial class DestroyEntityAttribute
     {
-        public interface ICondition
-        {
-        }
-
-        [System.Serializable]
-        public class DistanceReachCondition : ICondition
+        [Serializable]
+        public class DistanceReachCondition : IDestroyCondition
         {
             [SerializeReference, SubclassSelector] public IValueReferenceFloat DestroyDistance = new ValueReferenceFloat();
         }
     }
-    
 }

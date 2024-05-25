@@ -50,8 +50,8 @@ namespace Code.CubeLayer
 
             addEngine(TICK, cubeDeathEngine);
 
-            //addEngine(TICK, tickReviveTimerEngine);
-            //addEngine(TICK, reviveCubeEngine);
+            addEngine(TICK, tickReviveTimerEngine);
+            addEngine(TICK, reviveCubeEngine);
         }
     }
 }

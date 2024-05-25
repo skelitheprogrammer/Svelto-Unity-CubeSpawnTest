@@ -22,12 +22,12 @@ namespace Code.Infrastructure
 
             nameof(CubeEngineNames.KILL_CUBE),
 
-            // nameof(CubeEngineNames.REVIVE_TICK),
-            // nameof(CubeEngineNames.REVIVE),
+            nameof(CubeEngineNames.REVIVE_TICK),
+            nameof(CubeEngineNames.REVIVE),
 
             nameof(SyncEngineNames.SYNC_POSITION_ENGINE),
             nameof(SyncEngineNames.SYNC_ROTATION_ENGINE),
-            
+
             nameof(TickEngineNames.SUBMISSION_ENGINE),
         };
 
