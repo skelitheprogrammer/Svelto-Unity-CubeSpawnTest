@@ -1,8 +1,5 @@
 ﻿using Code.CubeLayer.Entities;
-using Code.CubeLayer.Entities.Components;
 using Code.DestroyableLayer.Infrastructure;
-using Code.TimersLayer;
-using Svelto.Common;
 using Svelto.ECS;
 using Svelto.ECS.Internal;
 
