@@ -6,8 +6,7 @@ using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines.Destroy.Timer
 {
-    [Sequenced(nameof(CubeEngineNames.DESTROY_ON_TIMER_EXPIRED))]
-    public class DestroyOnTimeExpiredEngine : IQueryingEntitiesEngine, IStepEngine
+    public class DestroyCubeAddToDestroyFilterEngine : IQueryingEntitiesEngine, IStepEngine
     {
         public void Ready()
         {
@@ -32,6 +31,6 @@ namespace Code.CubeLayer.Engines.Destroy.Timer
             }
         }
 
-        public string name => nameof(CubeEngineNames.DESTROY_ON_TIMER_EXPIRED);
+        public string name => GetType().Name;
     }
 }

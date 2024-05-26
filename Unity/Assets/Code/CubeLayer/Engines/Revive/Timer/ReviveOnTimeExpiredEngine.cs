@@ -6,8 +6,7 @@ using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines.Revive.Timer
 {
-    [Sequenced(nameof(CubeEngineNames.REVIVE_ON_TIMER_EXPIRED))]
-    public class ReviveOnTimerExpiredEngine : IQueryingEntitiesEngine, IStepEngine
+    public class ReviveCubeAddToAliveFilterEngine : IQueryingEntitiesEngine, IStepEngine
     {
         public void Ready()
         {
@@ -17,6 +16,8 @@ namespace Code.CubeLayer.Engines.Revive.Timer
 
         public EntitiesDB entitiesDB { get; set; }
         private EntitiesDB.SveltoFilters _filters;
+
+        public string name => GetType().Name;
 
         public void Step()
         {
@@ -31,7 +32,5 @@ namespace Code.CubeLayer.Engines.Revive.Timer
                 }
             }
         }
-
-        public string name => nameof(CubeEngineNames.REVIVE_ON_TIMER_EXPIRED);
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace Code.CubeLayer.Engines.Movement.SineWave
 {
-    [Sequenced(nameof(CubeEngineNames.UPDATE_DIRECTION_SINE_WAVE))]
     public class UpdateDirectionSineWaveEngine : IQueryingEntitiesEngine, IStepEngine
     {
         public void Ready()
@@ -18,6 +17,7 @@ namespace Code.CubeLayer.Engines.Movement.SineWave
 
         private EntitiesDB.SveltoFilters _filters;
         private ITime _time;
+        public string name => GetType().Name;
 
         public UpdateDirectionSineWaveEngine(ITime time)
         {
@@ -39,7 +39,5 @@ namespace Code.CubeLayer.Engines.Movement.SineWave
                 }
             }
         }
-
-        public string name => nameof(CubeEngineNames.UPDATE_DIRECTION_SINE_WAVE);
     }
 }

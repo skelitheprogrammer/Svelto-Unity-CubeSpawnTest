@@ -3,11 +3,11 @@ using Svelto.ECS;
 
 namespace Code.TimersLayer.Engines
 {
-    public abstract class AddToExpiredTimerEngine<T> : IQueryingEntitiesEngine, IStepEngine
+    public abstract class AddToExpiredFilterTimerEngine<T> : IQueryingEntitiesEngine, IStepEngine
     {
         public EntitiesDB entitiesDB { get; set; }
         private EntitiesDB.SveltoFilters _filters;
-        public abstract string name { get; }
+        public string name => GetType().Name;
 
         public void Ready()
         {

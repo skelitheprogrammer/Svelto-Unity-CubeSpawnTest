@@ -11,12 +11,10 @@ namespace Code.CubeLayer.Engines.Revive.Timer
         protected override bool MovedToConditionGroup(in ExclusiveGroupStruct groupStruct) => Dead.Includes(groupStruct);
     }
 
-
-    [Sequenced(nameof(CubeEngineNames.ADD_TO_REVIVE_TIMER_EXPIRED))]
-    public class ReviveTimerAddToExpired : AddToExpiredTimerEngine<Alive>
+    
+    public class ReviveCubeAddToExpiredTimerFilterEngine : AddToExpiredFilterTimerEngine<Alive>
     {
         protected override bool GroupIncludeCondition(in ExclusiveGroupStruct exclusiveGroupStruct) => Dead.Includes(exclusiveGroupStruct);
-
-        public override string name => nameof(CubeEngineNames.ADD_TO_REVIVE_TIMER_EXPIRED);
+        
     }
 }

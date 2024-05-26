@@ -2,8 +2,10 @@
 using Code.EngineViewSyncLayer.Engines;
 using Code.EngineViewSyncLayer.Objects;
 using Code.Infrastructure;
+using Svelto.DataStructures;
 using Svelto.ECS;
 using UnityEngine;
+using static Code.Infrastructure.TickType;
 
 namespace Code.EngineViewSyncLayer.Infrastructure
 {
@@ -16,10 +18,15 @@ namespace Code.EngineViewSyncLayer.Infrastructure
             SyncPositionEngine syncPositionEngine = new(instanceManager);
             SyncRotationEngine syncRotationEngine = new(instanceManager);
 
+            var unsortedGroup = new FasterList<IStepEngine>(
+                syncPositionEngine,
+                syncRotationEngine
+            );
+            SyncLayerUnsortedTickGroup syncLayerUnsortedTickGroup = new(unsortedGroup);
+
             addEngine(null, syncEntityStateReactionEngine);
             
-            addEngine(TickType.TICK, syncPositionEngine);
-            addEngine(TickType.TICK, syncRotationEngine);
+            addEngine(TICK, syncLayerUnsortedTickGroup);
         }
     }
 }

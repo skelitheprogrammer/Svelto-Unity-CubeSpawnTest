@@ -7,7 +7,7 @@ namespace Code.TimersLayer.Engines
     public abstract class TimerTickEngine<TTimerTag> : IQueryingEntitiesEngine, IStepEngine
     {
         public EntitiesDB entitiesDB { get; set; }
-        public abstract string name { get; }
+        public string name => GetType().Name;
 
         protected abstract FasterReadOnlyList<ExclusiveGroupStruct> Groups { get; }
 

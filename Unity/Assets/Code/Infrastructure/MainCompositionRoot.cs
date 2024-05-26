@@ -90,7 +90,7 @@ namespace Code.Infrastructure
                     }
                 };
 
-                CubeLayerComposer.Compose(AddEngine, factory, cubeConfig, time, functions);
+                CubeLayerComposer.Compose(_engineRoot, startupEngines, tickEngines, factory, cubeConfig, time, functions);
                 EngineSyncLayerComposer.Compose(AddEngine, entityInstanceManager);
 
                 TickEngine tickEngine = new(entityScheduler);
@@ -157,7 +157,7 @@ namespace Code.Infrastructure
                         {
                             return;
                         }
-                        
+
                         tickEngineGroup.Step();
                     }
                 }
@@ -169,5 +169,4 @@ namespace Code.Infrastructure
             }
         }
     }
-    
 }

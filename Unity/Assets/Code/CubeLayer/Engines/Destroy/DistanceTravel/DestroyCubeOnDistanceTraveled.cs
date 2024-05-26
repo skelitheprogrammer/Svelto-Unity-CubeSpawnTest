@@ -6,8 +6,7 @@ using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines.Destroy.DistanceTravel
 {
-    [Sequenced(nameof(CubeEngineNames.DESTROY_ON_DISTANCE))]
-    public class DestroyCubesOnDistanceTraveled : IQueryingEntitiesEngine, IStepEngine
+    public class DestroyCubeOnDistanceTraveled : IQueryingEntitiesEngine, IStepEngine
     {
         public void Ready()
         {
@@ -18,7 +17,7 @@ namespace Code.CubeLayer.Engines.Destroy.DistanceTravel
 
         public EntitiesDB entitiesDB { get; set; }
         private EntitiesDB.SveltoFilters _filters;
-        public string name => nameof(CubeEngineNames.DESTROY_ON_DISTANCE);
+        public string name => GetType().Name;
 
         public void Step()
         {

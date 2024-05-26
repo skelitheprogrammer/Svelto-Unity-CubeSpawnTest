@@ -5,7 +5,7 @@ using Svelto.ECS.Internal;
 
 namespace Code.CubeLayer.Engines.Destroy
 {
-    public abstract class CubeDeathEngine<T> : IQueryingEntitiesEngine, IStepEngine where T : struct, _IInternalEntityComponent
+    public abstract class CubeDeathEngine<TComponent> : IQueryingEntitiesEngine, IStepEngine where TComponent : struct, _IInternalEntityComponent
     {
         public void Ready()
         {
@@ -16,6 +16,8 @@ namespace Code.CubeLayer.Engines.Destroy
         private readonly IEntityFunctions _functions;
         private EntitiesDB.SveltoFilters _filters;
 
+        public string name => GetType().Name;
+
         public CubeDeathEngine(IEntityFunctions functions)
         {
             _functions = functions;
@@ -23,7 +25,7 @@ namespace Code.CubeLayer.Engines.Destroy
 
         public void Step()
         {
-            foreach ((EntityFilterIndices indices, ExclusiveGroupStruct exclusiveGroupStruct) in _filters.GetTransientFilter<T>(DestroyableFilterIds.DeadEntities))
+            foreach ((EntityFilterIndices indices, ExclusiveGroupStruct exclusiveGroupStruct) in _filters.GetTransientFilter<TComponent>(DestroyableFilterIds.DeadEntities))
             {
                 for (int i = 0; i < indices.count; i++)
                 {
@@ -31,7 +33,5 @@ namespace Code.CubeLayer.Engines.Destroy
                 }
             }
         }
-
-        public abstract string name { get; }
     }
 }

@@ -9,6 +9,7 @@ using Code.CubeLayer.Services;
 using Code.Infrastructure;
 using Code.UtilityLayer;
 using Code.UtilityLayer.DataSources.CubeConfig;
+using Svelto.DataStructures;
 using Svelto.ECS;
 using static Code.Infrastructure.TickType;
 
@@ -16,8 +17,10 @@ namespace Code.CubeLayer
 {
     public static class CubeLayerComposer
     {
-        public static void Compose(Action<TickType?, IEngine> addEngine, CubeFactory factory, CubeConfig config, ITime time, IEntityFunctions functions)
+        public static void Compose(EnginesRoot root, FasterList<IStepEngine> startup, FasterList<IStepEngine> tick, CubeFactory factory, CubeConfig config, ITime time, IEntityFunctions functions)
         {
+            #region Initialization
+
             CubeStartupEngine cubeStartupEngine = new(factory, config);
             DestroyTimerStartup destroyTimerStartup = new();
             ReviveTimerStartup reviveTimerStartup = new();
@@ -31,48 +34,66 @@ namespace Code.CubeLayer
             FaceRotationTowardsMoveDirectionEngine faceRotationTowardsMoveDirectionEngine = new();
 
             CubeCalculateDistanceTraveledEngine calculateDistanceTraveledEngine = new();
-            DestroyCubesOnDistanceTraveled destroyCubesOnDistanceTraveled = new();
+            DestroyCubeOnDistanceTraveled destroyCubeOnDistanceTraveled = new();
 
             TickDestroyTimerEngine tickDestroyTimerEngine = new(time);
-            DestroyTimerAddToExpired destroyTimerAddToExpired = new();
-            DestroyOnTimeExpiredEngine destroyOnTimeExpiredEngine = new();
-
+            DestroyCubeAddToExpiredFilterTimerEngine destroyCubeAddToExpiredFilterTimerEngine = new();
+            DestroyCubeAddToDestroyFilterEngine destroyCubeAddToDestroyFilterEngine = new();
 
             TickReviveTimerEngine tickReviveTimerEngine = new(time);
-            ReviveTimerAddToExpired reviveTimerAddToExpired = new();
+            ReviveCubeAddToExpiredTimerFilterEngine reviveCubeAddToExpiredTimerFilterEngine = new();
             CubeTimerReviveEngine cubeReviveEngine = new(functions);
-            ReviveOnTimerExpiredEngine reviveOnTimerExpiredEngine = new();
+            ReviveCubeAddToAliveFilterEngine reviveCubeAddToAliveFilterEngine = new();
 
             CubeTimerDeathEngine cubeTimerDeathEngine = new(functions);
             CubeDistanceDeathEngine cubeDistanceDeathEngine = new(functions);
 
-            addEngine(null, addCubesToSineMoveFilter);
+            #endregion
 
-            addEngine(STARTUP, cubeStartupEngine);
-            addEngine(null, destroyTimerStartup);
-            addEngine(null, reviveTimerStartup);
+            FasterList<IStepEngine> movementGroup = new(
+                updateSineWaveEngine,
+                updateDirectionSineWaveEngine,
+                cubeMoveEngine,
+                faceRotationTowardsMoveDirectionEngine
+            );
 
-            addEngine(TICK, updateSineWaveEngine);
-            addEngine(TICK, updateDirectionSineWaveEngine);
+            FasterList<IStepEngine> destroyTimerGroup = new(
+                tickDestroyTimerEngine,
+                destroyCubeAddToExpiredFilterTimerEngine,
+                destroyCubeAddToDestroyFilterEngine,
+                cubeTimerDeathEngine
+            );
 
-            addEngine(TICK, cubeMoveEngine);
-            addEngine(TICK, faceRotationTowardsMoveDirectionEngine);
+            FasterList<IStepEngine> destroyDistanceReachGroup = new(
+                calculateDistanceTraveledEngine,
+                destroyCubeOnDistanceTraveled,
+                cubeDistanceDeathEngine
+            );
 
-            addEngine(TICK, tickDestroyTimerEngine);
-            addEngine(TICK, destroyTimerAddToExpired);
+            FasterList<IStepEngine> reviveTimerGroup = new(
+                tickReviveTimerEngine,
+                reviveCubeAddToExpiredTimerFilterEngine,
+                reviveCubeAddToAliveFilterEngine,
+                cubeReviveEngine
+            );
 
-            addEngine(TICK, destroyOnTimeExpiredEngine);
 
-            addEngine(TICK, calculateDistanceTraveledEngine);
-            addEngine(TICK, destroyCubesOnDistanceTraveled);
+            FasterList<IStepEngine> tickGroups = new();
+            tickGroups.AddRange(movementGroup);
+            tickGroups.AddRange(destroyTimerGroup);
+            tickGroups.AddRange(destroyDistanceReachGroup);
+            tickGroups.AddRange(reviveTimerGroup);
 
-            addEngine(TICK, cubeTimerDeathEngine);
-            addEngine(TICK, cubeDistanceDeathEngine);
+            CubeLayerUnsortedTickEngineGroup cubeTickGroups = new(tickGroups);
 
-            addEngine(TICK, tickReviveTimerEngine);
-            addEngine(TICK, reviveTimerAddToExpired);
-            addEngine(TICK, cubeReviveEngine);
-            addEngine(TICK, reviveOnTimerExpiredEngine);
+            root.AddEngine(addCubesToSineMoveFilter);
+            root.AddEngine(destroyTimerStartup);
+            root.AddEngine(reviveTimerStartup);
+            
+            root.AddEngine(cubeStartupEngine);
+
+            tick.Add(cubeTickGroups);
+            root.AddEngine(cubeTickGroups);
         }
     }
 }

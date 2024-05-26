@@ -16,6 +16,8 @@ namespace Code.CubeLayer.Engines.Revive
         private readonly IEntityFunctions _functions;
         private EntitiesDB.SveltoFilters _filters;
 
+        public string name => GetType().Name;
+
         public CubeReviveEngine(IEntityFunctions functions)
         {
             _functions = functions;
@@ -31,7 +33,5 @@ namespace Code.CubeLayer.Engines.Revive
                 }
             }
         }
-
-        public abstract string name { get; }
     }
 }

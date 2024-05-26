@@ -6,19 +6,20 @@ using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines
 {
-    [Sequenced(nameof(CubeEngineNames.STARTUP))]
-    public class CubeStartupEngine : IStepEngine
+    public class CubeStartupEngine : IQueryingEntitiesEngine
     {
         private readonly CubeFactory _factory;
         private readonly CubeConfig _config;
+
+        public string name => GetType().Name;
 
         public CubeStartupEngine(CubeFactory factory, CubeConfig config)
         {
             _factory = factory;
             _config = config;
         }
-
-        public void Step()
+        
+        public void Ready()
         {
             foreach (ICubeSettings cubeSettings in _config.CubeSettings)
             {
@@ -36,6 +37,6 @@ namespace Code.CubeLayer.Engines
             }
         }
 
-        public string name => nameof(CubeEngineNames.STARTUP);
+        public EntitiesDB entitiesDB { get; set; }
     }
 }

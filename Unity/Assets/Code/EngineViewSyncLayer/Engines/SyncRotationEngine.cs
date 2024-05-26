@@ -9,12 +9,11 @@ using UnityEngine;
 
 namespace Code.EngineViewSyncLayer.Engines
 {
-    [Sequenced(nameof(SyncEngineNames.SYNC_ROTATION_ENGINE))]
     public class SyncRotationEngine : IQueryingEntitiesEngine, IStepEngine
     {
         private readonly EntityInstanceManager<GameObject> _instanceManager;
         public EntitiesDB entitiesDB { get; set; }
-        public string name => nameof(SyncEngineNames.SYNC_ROTATION_ENGINE);
+        public string name => nameof(SyncRotationEngine);
 
         public SyncRotationEngine(EntityInstanceManager<GameObject> instanceManager)
         {

@@ -7,14 +7,14 @@ using UnityEngine;
 
 namespace Code.CubeLayer.Engines.Movement
 {
-    [Sequenced(nameof(CubeEngineNames.FACE_DIRECTION))]
     public class FaceRotationTowardsMoveDirectionEngine : IQueryingEntitiesEngine, IStepEngine
     {
+        public EntitiesDB entitiesDB { get; set; }
+        public string name => GetType().Name;
+
         public void Ready()
         {
         }
-
-        public EntitiesDB entitiesDB { get; set; }
 
         public void Step()
         {
@@ -31,7 +31,5 @@ namespace Code.CubeLayer.Engines.Movement
                 }
             }
         }
-
-        public string name => nameof(CubeEngineNames.FACE_DIRECTION);
     }
 }

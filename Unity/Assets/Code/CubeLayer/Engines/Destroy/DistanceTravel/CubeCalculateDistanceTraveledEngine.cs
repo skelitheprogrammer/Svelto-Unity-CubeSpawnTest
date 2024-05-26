@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace Code.CubeLayer.Engines.Destroy.DistanceTravel
 {
-    [Sequenced(nameof(CubeEngineNames.CALCULATE_DISTANCE))]
     public class CubeCalculateDistanceTraveledEngine : IQueryingEntitiesEngine, IStepEngine, IReactOnSwapEx<DistanceTraveled>, IReactOnAddEx<DistanceTraveled>
     {
         public void Ready()
@@ -16,7 +15,7 @@ namespace Code.CubeLayer.Engines.Destroy.DistanceTravel
 
         public EntitiesDB entitiesDB { get; set; }
 
-        public string name => nameof(CubeEngineNames.CALCULATE_DISTANCE);
+        public string name => GetType().Name;
 
         public void Step()
         {

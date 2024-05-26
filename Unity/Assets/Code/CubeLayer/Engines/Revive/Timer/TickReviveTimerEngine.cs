@@ -8,10 +8,8 @@ using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines.Revive.Timer
 {
-    [Sequenced(nameof(CubeEngineNames.REVIVE_TIMER_TICK))]
     public class TickReviveTimerEngine : TimerTickEngine<Alive>
     {
-        public override string name => nameof(CubeEngineNames.REVIVE_TIMER_TICK);
         protected override FasterReadOnlyList<ExclusiveGroupStruct> Groups { get; } = DeadCubes.Groups;
 
         public TickReviveTimerEngine(ITime time)
