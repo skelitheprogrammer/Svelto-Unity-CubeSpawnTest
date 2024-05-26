@@ -1,11 +1,9 @@
 ﻿using Code.CubeLayer.Entities;
-using Code.CubeLayer.Entities.Components;
 using Code.DestroyableLayer.Infrastructure;
-using Svelto.Common;
 using Svelto.ECS;
 using Svelto.ECS.Internal;
 
-namespace Code.CubeLayer.Engines
+namespace Code.CubeLayer.Engines.Destroy
 {
     public abstract class CubeDeathEngine<T> : IQueryingEntitiesEngine, IStepEngine where T : struct, _IInternalEntityComponent
     {

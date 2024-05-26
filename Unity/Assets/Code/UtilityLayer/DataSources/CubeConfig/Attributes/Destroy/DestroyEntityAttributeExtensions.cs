@@ -3,6 +3,7 @@ using System.Linq;
 using Code.CubeLayer.Entities.Components;
 using Code.DestroyableLayer.Infrastructure;
 using Code.TimersLayer;
+using Code.TimersLayer.Components;
 using Svelto.ECS;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy

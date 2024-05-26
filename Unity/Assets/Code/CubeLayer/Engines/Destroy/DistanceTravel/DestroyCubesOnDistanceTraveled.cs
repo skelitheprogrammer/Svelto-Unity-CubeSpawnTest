@@ -4,7 +4,7 @@ using Code.DestroyableLayer.Infrastructure;
 using Svelto.Common;
 using Svelto.ECS;
 
-namespace Code.CubeLayer.Engines.DistanceTravel
+namespace Code.CubeLayer.Engines.Destroy.DistanceTravel
 {
     [Sequenced(nameof(CubeEngineNames.DESTROY_ON_DISTANCE))]
     public class DestroyCubesOnDistanceTraveled : IQueryingEntitiesEngine, IStepEngine

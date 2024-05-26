@@ -5,7 +5,7 @@ using Svelto.Common;
 using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.CubeLayer.Engines.DistanceTravel
+namespace Code.CubeLayer.Engines.Destroy.DistanceTravel
 {
     [Sequenced(nameof(CubeEngineNames.CALCULATE_DISTANCE))]
     public class CubeCalculateDistanceTraveledEngine : IQueryingEntitiesEngine, IStepEngine, IReactOnSwapEx<DistanceTraveled>, IReactOnAddEx<DistanceTraveled>

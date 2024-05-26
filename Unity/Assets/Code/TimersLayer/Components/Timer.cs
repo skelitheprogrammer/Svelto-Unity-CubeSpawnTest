@@ -1,6 +1,6 @@
 ﻿using Svelto.ECS;
 
-namespace Code.TimersLayer
+namespace Code.TimersLayer.Components
 {
     public struct Timer<T> : IEntityComponent
     {

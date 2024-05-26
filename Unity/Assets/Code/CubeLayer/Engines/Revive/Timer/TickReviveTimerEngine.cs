@@ -1,12 +1,12 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.DestroyableLayer.Infrastructure;
-using Code.TimersLayer;
+using Code.TimersLayer.Components;
 using Code.UtilityLayer;
 using Svelto.Common;
 using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.CubeLayer.Engines.Revive
+namespace Code.CubeLayer.Engines.Revive.Timer
 {
     [Sequenced(nameof(CubeEngineNames.REVIVE_TIMER_TICK))]
     public class TickReviveTimerEngine : IQueryingEntitiesEngine, IStepEngine

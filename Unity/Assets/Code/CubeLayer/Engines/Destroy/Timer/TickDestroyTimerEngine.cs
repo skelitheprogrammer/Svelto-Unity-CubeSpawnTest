@@ -1,11 +1,11 @@
 ﻿using Code.DestroyableLayer.Infrastructure;
-using Code.TimersLayer;
+using Code.TimersLayer.Components;
 using Code.UtilityLayer;
 using Svelto.Common;
 using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.CubeLayer.Engines.DistanceTravel
+namespace Code.CubeLayer.Engines.Destroy.Timer
 {
     [Sequenced(nameof(CubeEngineNames.DESTROY_TIMER_TICK))]
     public class TickDestroyTimerEngine : IQueryingEntitiesEngine, IStepEngine

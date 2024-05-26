@@ -1,10 +1,11 @@
 ﻿using Code.DestroyableLayer.Infrastructure;
 using Code.TimersLayer;
+using Code.TimersLayer.Components;
 using Svelto.Common;
 using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.CubeLayer.Engines.DistanceTravel
+namespace Code.CubeLayer.Engines.Destroy.Timer
 {
     [Sequenced(nameof(CubeEngineNames.DESTROY_ON_TIMER_EXPIRED))]
     public class DestroyOnTimeExpiredEngine : IQueryingEntitiesEngine, IStepEngine

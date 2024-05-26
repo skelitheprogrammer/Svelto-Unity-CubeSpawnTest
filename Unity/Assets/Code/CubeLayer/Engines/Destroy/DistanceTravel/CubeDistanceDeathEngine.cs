@@ -2,7 +2,7 @@
 using Svelto.Common;
 using Svelto.ECS;
 
-namespace Code.CubeLayer.Engines.DistanceTravel
+namespace Code.CubeLayer.Engines.Destroy.DistanceTravel
 {
     [Sequenced(nameof(CubeEngineNames.KILL_CUBE_DISTANCE))]
     public class CubeDistanceDeathEngine : CubeDeathEngine<DestroyDistance>

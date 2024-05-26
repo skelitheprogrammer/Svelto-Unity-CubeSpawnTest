@@ -1,11 +1,11 @@
 ﻿using System;
 using Code.DestroyableLayer.Infrastructure;
-using Code.TimersLayer;
+using Code.TimersLayer.Components;
 using Code.TimersLayer.Engines;
 using Svelto.Common;
 using Svelto.ECS;
 
-namespace Code.CubeLayer.Engines.Revive
+namespace Code.CubeLayer.Engines.Revive.Timer
 {
     [Sequenced(nameof(CubeEngineNames.REVIVE_TIMER_STARTUP))]
     public class ReviveTimerStartup : TimersStartupEngine<Alive>

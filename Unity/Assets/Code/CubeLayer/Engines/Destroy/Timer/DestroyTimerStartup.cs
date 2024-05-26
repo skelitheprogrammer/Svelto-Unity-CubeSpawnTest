@@ -1,11 +1,11 @@
 ﻿using System;
 using Code.DestroyableLayer.Infrastructure;
-using Code.TimersLayer;
+using Code.TimersLayer.Components;
 using Code.TimersLayer.Engines;
 using Svelto.Common;
 using Svelto.ECS;
 
-namespace Code.CubeLayer.Engines.DistanceTravel
+namespace Code.CubeLayer.Engines.Destroy.Timer
 {
     [Sequenced(nameof(CubeEngineNames.DESTROY_TIMER_STARTUP))]
     public class DestroyTimerStartup : TimersStartupEngine<Dead>
