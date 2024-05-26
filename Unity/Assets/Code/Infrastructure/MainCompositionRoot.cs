@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Code.CubeLayer;
+﻿using Code.CubeLayer;
 using Code.CubeLayer.Services;
 using Code.EngineViewSyncLayer.Infrastructure;
 using Code.EngineViewSyncLayer.Objects;
@@ -19,12 +18,6 @@ using UnityEngine.PlayerLoop;
 
 namespace Code.Infrastructure
 {
-    public enum TickType
-    {
-        STARTUP,
-        TICK
-    }
-
     public class MainCompositionRoot : ICompositionRoot
     {
         private EnginesRoot _engineRoot;
@@ -74,38 +67,21 @@ namespace Code.Infrastructure
             gameObjectViewHandlerManager.RegisterHandler(cubeResourceIndex, cubeViewHandler);
 
             #endregion
-
-            ComposeLayers(out FasterList<IStepEngine> startupEngines, out FasterList<IStepEngine> tickEngines);
+            
+            FasterList<IStepEngine> startupEngines = new();
+            FasterList<IStepEngine> tickEngines = new();
+            
+            ComposeLayers();
             AttachPlayerLoop();
 
-            void ComposeLayers(out FasterList<IStepEngine> startupEngines, out FasterList<IStepEngine> tickEngines)
+            void ComposeLayers()
             {
-                Dictionary<TickType?, FasterList<IStepEngine>> map = new()
-                {
-                    {
-                        TickType.STARTUP, startupEngines = new()
-                    },
-                    {
-                        TickType.TICK, tickEngines = new()
-                    }
-                };
-
                 CubeLayerComposer.Compose(_engineRoot, startupEngines, tickEngines, factory, cubeConfig, time, functions);
-                EngineSyncLayerComposer.Compose(AddEngine, entityInstanceManager);
+                EngineSyncLayerComposer.Compose(_engineRoot, tickEngines, entityInstanceManager);
 
                 TickEngine tickEngine = new(entityScheduler);
                 tickEngines.Add(tickEngine);
                 _engineRoot.AddEngine(tickEngine);
-
-                void AddEngine(TickType? type, IEngine engine)
-                {
-                    if (type is not null && engine is IStepEngine stepEngine)
-                    {
-                        map[type].Add(stepEngine);
-                    }
-
-                    _engineRoot.AddEngine(engine);
-                }
             }
 
             void AttachPlayerLoop()

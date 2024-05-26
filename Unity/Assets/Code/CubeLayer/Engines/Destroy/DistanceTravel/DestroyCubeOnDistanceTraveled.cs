@@ -1,7 +1,6 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
 using Code.DestroyableLayer.Infrastructure;
-using Svelto.Common;
 using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines.Destroy.DistanceTravel

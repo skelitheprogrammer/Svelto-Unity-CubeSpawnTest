@@ -1,17 +1,14 @@
-﻿using System;
-using Code.EngineViewSyncLayer.Engines;
+﻿using Code.EngineViewSyncLayer.Engines;
 using Code.EngineViewSyncLayer.Objects;
-using Code.Infrastructure;
 using Svelto.DataStructures;
 using Svelto.ECS;
 using UnityEngine;
-using static Code.Infrastructure.TickType;
 
 namespace Code.EngineViewSyncLayer.Infrastructure
 {
     public static class EngineSyncLayerComposer
     {
-        public static void Compose(Action<TickType?, IEngine> addEngine, EntityInstanceManager<GameObject> instanceManager)
+        public static void Compose(EnginesRoot root, FasterList<IStepEngine> tick, EntityInstanceManager<GameObject> instanceManager)
         {
             SyncEntityState syncEntityStateReactionEngine = new(instanceManager);
 
@@ -23,10 +20,11 @@ namespace Code.EngineViewSyncLayer.Infrastructure
                 syncRotationEngine
             );
             SyncLayerUnsortedTickGroup syncLayerUnsortedTickGroup = new(unsortedGroup);
-
-            addEngine(null, syncEntityStateReactionEngine);
             
-            addEngine(TICK, syncLayerUnsortedTickGroup);
+            root.AddEngine(syncEntityStateReactionEngine);
+            
+            tick.Add(syncLayerUnsortedTickGroup);
+            root.AddEngine(syncLayerUnsortedTickGroup);
         }
     }
 }

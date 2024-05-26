@@ -1,9 +1,7 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.EngineViewSyncLayer.Entities.Components;
-using Code.EngineViewSyncLayer.Infrastructure;
 using Code.EngineViewSyncLayer.Objects;
 using Code.TransformLayer.Entities.Components;
-using Svelto.Common;
 using Svelto.ECS;
 using UnityEngine;
 

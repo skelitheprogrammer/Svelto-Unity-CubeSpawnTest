@@ -1,17 +1,14 @@
-﻿using System;
-using Code.CubeLayer.Engines;
+﻿using Code.CubeLayer.Engines;
 using Code.CubeLayer.Engines.Destroy.DistanceTravel;
 using Code.CubeLayer.Engines.Destroy.Timer;
 using Code.CubeLayer.Engines.Movement;
 using Code.CubeLayer.Engines.Movement.SineWave;
 using Code.CubeLayer.Engines.Revive.Timer;
 using Code.CubeLayer.Services;
-using Code.Infrastructure;
 using Code.UtilityLayer;
 using Code.UtilityLayer.DataSources.CubeConfig;
 using Svelto.DataStructures;
 using Svelto.ECS;
-using static Code.Infrastructure.TickType;
 
 namespace Code.CubeLayer
 {
@@ -77,6 +74,10 @@ namespace Code.CubeLayer
                 cubeReviveEngine
             );
 
+            FasterList<IStepEngine> startupGroup = new();
+            startupGroup.Add(cubeStartupEngine);
+
+            CubeLayerStartupGroup cubeStartupGroups = new(startupGroup);
 
             FasterList<IStepEngine> tickGroups = new();
             tickGroups.AddRange(movementGroup);
@@ -89,7 +90,8 @@ namespace Code.CubeLayer
             root.AddEngine(addCubesToSineMoveFilter);
             root.AddEngine(destroyTimerStartup);
             root.AddEngine(reviveTimerStartup);
-            
+
+            startup.Add(cubeStartupGroups);
             root.AddEngine(cubeStartupEngine);
 
             tick.Add(cubeTickGroups);

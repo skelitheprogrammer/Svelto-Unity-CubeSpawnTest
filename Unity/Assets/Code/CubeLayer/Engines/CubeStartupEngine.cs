@@ -1,12 +1,11 @@
 ﻿using System;
 using Code.CubeLayer.Services;
 using Code.UtilityLayer.DataSources.CubeConfig;
-using Svelto.Common;
 using Svelto.ECS;
 
 namespace Code.CubeLayer.Engines
 {
-    public class CubeStartupEngine : IQueryingEntitiesEngine
+    public class CubeStartupEngine : IStepEngine
     {
         private readonly CubeFactory _factory;
         private readonly CubeConfig _config;
@@ -18,8 +17,8 @@ namespace Code.CubeLayer.Engines
             _factory = factory;
             _config = config;
         }
-        
-        public void Ready()
+
+        public void Step()
         {
             foreach (ICubeSettings cubeSettings in _config.CubeSettings)
             {
@@ -36,7 +35,5 @@ namespace Code.CubeLayer.Engines
                 }
             }
         }
-
-        public EntitiesDB entitiesDB { get; set; }
     }
 }
