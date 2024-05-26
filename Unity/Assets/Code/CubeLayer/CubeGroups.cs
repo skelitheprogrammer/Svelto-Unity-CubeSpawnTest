@@ -1,7 +1,7 @@
 ﻿using Code.DestroyableLayer.Infrastructure;
 using Svelto.ECS;
 
-namespace Code.CubeLayer.Entities
+namespace Code.CubeLayer
 {
     public class Cube : GroupTag<Cube>
     {

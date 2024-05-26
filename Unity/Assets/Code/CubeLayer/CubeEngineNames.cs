@@ -1,4 +1,4 @@
-﻿namespace Code.CubeLayer.Engines
+﻿namespace Code.CubeLayer
 {
     public enum CubeEngineNames
     {

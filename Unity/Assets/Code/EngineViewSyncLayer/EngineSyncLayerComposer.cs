@@ -4,7 +4,7 @@ using Svelto.DataStructures;
 using Svelto.ECS;
 using UnityEngine;
 
-namespace Code.EngineViewSyncLayer.Infrastructure
+namespace Code.EngineViewSyncLayer
 {
     public static class EngineSyncLayerComposer
     {

@@ -1,6 +1,6 @@
 ﻿using Code.CubeLayer;
 using Code.CubeLayer.Services;
-using Code.EngineViewSyncLayer.Infrastructure;
+using Code.EngineViewSyncLayer;
 using Code.EngineViewSyncLayer.Objects;
 using Code.Ticking;
 using Code.UtilityLayer;

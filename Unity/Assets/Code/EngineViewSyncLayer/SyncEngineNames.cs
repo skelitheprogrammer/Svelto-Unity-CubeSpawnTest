@@ -1,4 +1,4 @@
-﻿namespace Code.EngineViewSyncLayer.Infrastructure
+﻿namespace Code.EngineViewSyncLayer
 {
     public enum SyncEngineNames
     {

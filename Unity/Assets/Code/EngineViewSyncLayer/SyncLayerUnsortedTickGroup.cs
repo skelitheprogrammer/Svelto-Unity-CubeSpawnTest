@@ -2,7 +2,7 @@
 using Svelto.DataStructures;
 using Svelto.ECS;
 
-namespace Code.EngineViewSyncLayer.Infrastructure
+namespace Code.EngineViewSyncLayer
 {
     [Sequenced(nameof(SyncEngineNames.SYNC_UNSORTED))]
     public class SyncLayerUnsortedTickGroup : UnsortedEnginesGroup<IStepEngine>
