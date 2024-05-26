@@ -14,7 +14,7 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive
             {
                 switch (condition)
                 {
-                    case ReviveEntityAttribute.ReviveAfterTimeCondition:
+                    case ReviveEntityAttribute.ReviveTimerCondition:
                         descriptor.ExtendWith(new[]
                         {
                             new ComponentBuilder<Timer<Alive>>(),
@@ -32,10 +32,10 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive
             {
                 switch (condition)
                 {
-                    case ReviveEntityAttribute.ReviveAfterTimeCondition reviveAfterTimeCondition:
+                    case ReviveEntityAttribute.ReviveTimerCondition reviveAfterTimeCondition:
                         entityInitializer.Init(new Timer<Alive>
                         {
-                            StartValue = reviveAfterTimeCondition.Timer.Reference
+                            StartValue = reviveAfterTimeCondition.Time.Reference
                         });
                         break;
                     default:

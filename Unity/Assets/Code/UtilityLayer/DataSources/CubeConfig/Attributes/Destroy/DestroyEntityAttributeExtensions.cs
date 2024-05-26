@@ -22,7 +22,7 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
                             new ComponentBuilder<DistanceTraveled>()
                         });
                         break;
-                    case DestroyEntityAttribute.TimeCondition:
+                    case Conditions.TimerCondition:
                         descriptor.ExtendWith(new IComponentBuilder[]
                         {
                             new ComponentBuilder<Timer<Dead>>()
@@ -46,7 +46,7 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
                             Value = distanceReachCondition.DestroyDistance.Reference
                         });
                         break;
-                    case DestroyEntityAttribute.TimeCondition timeCondition:
+                    case DestroyEntityAttribute.DestroyTimerCondition timeCondition:
                         entityInitializer.Init(new Timer<Dead>()
                         {
                             StartValue = timeCondition.Time.Reference,

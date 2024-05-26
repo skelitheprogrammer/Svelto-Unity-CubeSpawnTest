@@ -41,35 +41,35 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         Conditions:
-        - rid: 5150531975556628483
-    - rid: 5150531975556628483
-      type: {class: DestroyEntityAttribute/TimeCondition, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy,
-        asm: Assembly-CSharp}
-      data:
-        Time:
-          rid: 5150531975556628484
-    - rid: 5150531975556628484
-      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
-        asm: Assembly-CSharp}
-      data:
-        <Reference>k__BackingField: 2
+        - rid: 5150531984023879682
     - rid: 5150531975556628485
       type: {class: ReviveEntityAttribute, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive,
         asm: Assembly-CSharp}
       data:
         Conditions:
-        - rid: 5150531975556628486
-    - rid: 5150531975556628486
-      type: {class: ReviveEntityAttribute/ReviveAfterTimeCondition, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive,
+        - rid: 5150531984023879680
+    - rid: 5150531984023879680
+      type: {class: ReviveEntityAttribute/ReviveTimerCondition, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive,
         asm: Assembly-CSharp}
       data:
-        Timer:
-          rid: 5150531975556628490
-    - rid: 5150531975556628490
+        Time:
+          rid: 5150531984023879681
+    - rid: 5150531984023879681
       type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
         asm: Assembly-CSharp}
       data:
-        <Reference>k__BackingField: 2
+        <Reference>k__BackingField: 3
+    - rid: 5150531984023879682
+      type: {class: DestroyEntityAttribute/DestroyTimerCondition, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy,
+        asm: Assembly-CSharp}
+      data:
+        Time:
+          rid: 5150531984023879683
+    - rid: 5150531984023879683
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 3
     - rid: 5445433021308600376
       type: {class: ValueReferenceInt, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
         asm: Assembly-CSharp}

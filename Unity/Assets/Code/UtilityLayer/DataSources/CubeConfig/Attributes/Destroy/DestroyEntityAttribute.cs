@@ -1,6 +1,8 @@
 ﻿using System;
 using Code.Common.DataConfigSystem.ValueReference;
 using Code.Common.DataConfigSystem.ValueReference.Unmanaged;
+using Code.UtilityLayer.DataSources.CubeConfig.Attributes.Conditions;
+using Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive;
 using UnityEngine;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
@@ -22,12 +24,12 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
         {
             [SerializeReference, SubclassSelector] public IValueReferenceFloat DestroyDistance = new ValueReferenceFloat();
         }
-
-
-        [System.Serializable]
-        public class TimeCondition : IDestroyCondition
+        
+        [Serializable]
+        public class DestroyTimerCondition : TimerCondition, IDestroyCondition
         {
-            [SerializeReference, SubclassSelector] public IValueReferenceFloat Time = new ValueReferenceFloat();
         }
     }
+
+
 }

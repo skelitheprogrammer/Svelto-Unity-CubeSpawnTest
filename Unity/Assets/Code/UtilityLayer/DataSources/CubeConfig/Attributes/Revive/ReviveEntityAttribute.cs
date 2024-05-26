@@ -1,4 +1,4 @@
-﻿using Code.Common.DataConfigSystem.ValueReference;
+﻿using Code.UtilityLayer.DataSources.CubeConfig.Attributes.Conditions;
 using UnityEngine;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive
@@ -16,9 +16,8 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive
     public partial class ReviveEntityAttribute
     {
         [System.Serializable]
-        public class ReviveAfterTimeCondition : IReviveCondition
+        public class ReviveTimerCondition : TimerCondition, IReviveCondition
         {
-            [SerializeReference, SubclassSelector] public IValueReferenceFloat Timer;
         }
     }
 }
