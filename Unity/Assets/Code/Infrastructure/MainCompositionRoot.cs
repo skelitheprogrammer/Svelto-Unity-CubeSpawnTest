@@ -29,7 +29,7 @@ namespace Code.Infrastructure
     {
         private EnginesRoot _engineRoot;
         private bool _initialized;
-        
+
         public void OnContextCreated<T>(T contextHolder)
         {
         }
@@ -89,7 +89,7 @@ namespace Code.Infrastructure
                         TickType.TICK, tickEngines = new()
                     }
                 };
-                
+
                 CubeLayerComposer.Compose(AddEngine, factory, cubeConfig, time, functions);
                 EngineSyncLayerComposer.Compose(AddEngine, entityInstanceManager);
 
@@ -157,7 +157,7 @@ namespace Code.Infrastructure
                         {
                             return;
                         }
-
+                        
                         tickEngineGroup.Step();
                     }
                 }
@@ -169,4 +169,5 @@ namespace Code.Infrastructure
             }
         }
     }
+    
 }

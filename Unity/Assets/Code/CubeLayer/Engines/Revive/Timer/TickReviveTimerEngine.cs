@@ -1,40 +1,25 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.DestroyableLayer.Infrastructure;
-using Code.TimersLayer.Components;
+using Code.TimersLayer.Engines;
 using Code.UtilityLayer;
 using Svelto.Common;
+using Svelto.DataStructures;
 using Svelto.ECS;
-using UnityEngine;
 
 namespace Code.CubeLayer.Engines.Revive.Timer
 {
     [Sequenced(nameof(CubeEngineNames.REVIVE_TIMER_TICK))]
-    public class TickReviveTimerEngine : IQueryingEntitiesEngine, IStepEngine
+    public class TickReviveTimerEngine : TimerTickEngine<Alive>
     {
-        public void Ready()
-        {
-        }
-
-        public EntitiesDB entitiesDB { get; set; }
-        private ITime _time;
+        public override string name => nameof(CubeEngineNames.REVIVE_TIMER_TICK);
+        protected override FasterReadOnlyList<ExclusiveGroupStruct> Groups { get; } = DeadCubes.Groups;
 
         public TickReviveTimerEngine(ITime time)
         {
             _time = time;
         }
 
-        public void Step()
-        {
-            foreach (((var timers, int count), _) in entitiesDB.QueryEntities<Timer<Alive>>(DeadCubes.Groups))
-            {
-                for (int i = 0; i < count; i++)
-                {
-                    timers[i].Value -= _time.DeltaTime;
-                    Debug.Log($"Time to revive {timers[i].Value}");
-                }
-            }
-        }
-
-        public string name => nameof(CubeEngineNames.REVIVE_TIMER_TICK);
+        private ITime _time;
+        protected override float DeltaTime() => _time.DeltaTime;
     }
 }

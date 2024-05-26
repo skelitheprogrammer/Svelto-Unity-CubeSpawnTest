@@ -3,7 +3,6 @@ using Code.TimersLayer;
 using Code.TimersLayer.Components;
 using Svelto.Common;
 using Svelto.ECS;
-using UnityEngine;
 
 namespace Code.CubeLayer.Engines.Revive.Timer
 {
@@ -29,7 +28,6 @@ namespace Code.CubeLayer.Engines.Revive.Timer
                 for (var i = 0; i < indices.count; i++)
                 {
                     aliveFilter.Add(new(indices[i], group), indices[i]);
-                    Debug.Log("AliveFilterAdded");
                 }
             }
         }

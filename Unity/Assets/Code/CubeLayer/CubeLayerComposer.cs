@@ -41,7 +41,7 @@ namespace Code.CubeLayer
             TickReviveTimerEngine tickReviveTimerEngine = new(time);
             ReviveTimerAddToExpired reviveTimerAddToExpired = new();
             CubeTimerReviveEngine cubeReviveEngine = new(functions);
-            ReviveOnTimerExpiredEngine reviveOnTimerExpiredEngine =new();
+            ReviveOnTimerExpiredEngine reviveOnTimerExpiredEngine = new();
 
             CubeTimerDeathEngine cubeTimerDeathEngine = new(functions);
             CubeDistanceDeathEngine cubeDistanceDeathEngine = new(functions);

@@ -1,40 +1,24 @@
 ﻿using Code.DestroyableLayer.Infrastructure;
-using Code.TimersLayer.Components;
+using Code.TimersLayer.Engines;
 using Code.UtilityLayer;
 using Svelto.Common;
+using Svelto.DataStructures;
 using Svelto.ECS;
-using UnityEngine;
 
 namespace Code.CubeLayer.Engines.Destroy.Timer
 {
     [Sequenced(nameof(CubeEngineNames.DESTROY_TIMER_TICK))]
-    public class TickDestroyTimerEngine : IQueryingEntitiesEngine, IStepEngine
+    public class TickDestroyTimerEngine : TimerTickEngine<Dead>
     {
-        public void Ready()
-        {
-        }
-
-        public EntitiesDB entitiesDB { get; set; }
-
-        private ITime _time;
-
         public TickDestroyTimerEngine(ITime time)
         {
             _time = time;
         }
 
-        public void Step()
-        {
-            foreach (((var timers, int count), ExclusiveGroupStruct _) in entitiesDB.QueryEntities<Timer<Dead>>(Alive.Groups))
-            {
-                for (int i = 0; i < count; i++)
-                {
-                    timers[i].Value -= _time.DeltaTime;
-                    Debug.Log($"Time to destroy {timers[i].Value}");
-                }
-            }
-        }
+        public override string name => nameof(CubeEngineNames.DESTROY_TIMER_TICK);
+        protected override FasterReadOnlyList<ExclusiveGroupStruct> Groups { get; } = Alive.Groups;
+        protected override float DeltaTime() => _time.DeltaTime;
 
-        public string name => nameof(CubeEngineNames.DESTROY_TIMER_TICK);
+        private ITime _time;
     }
 }
