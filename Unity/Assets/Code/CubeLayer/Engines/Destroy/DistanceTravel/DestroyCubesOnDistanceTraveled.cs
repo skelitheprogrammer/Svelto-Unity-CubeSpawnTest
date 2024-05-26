@@ -41,7 +41,7 @@ namespace Code.CubeLayer.Engines.DistanceTravel
                         continue;
                     }
 
-                    filter.Add(new EGID(ids[i], groupStruct), ids[i]);
+                    filter.Add(new(ids[i], groupStruct), ids[i]);
                 }
             }
         }

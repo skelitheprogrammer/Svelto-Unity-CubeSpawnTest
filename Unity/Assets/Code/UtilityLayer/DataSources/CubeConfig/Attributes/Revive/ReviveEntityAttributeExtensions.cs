@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Code.CubeLayer.Entities.Components;
+using Code.DestroyableLayer.Infrastructure;
+using Code.TimersLayer;
 using Svelto.ECS;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive
@@ -16,7 +17,7 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive
                     case ReviveEntityAttribute.ReviveAfterTimeCondition:
                         descriptor.ExtendWith(new[]
                         {
-                            new ComponentBuilder<ReviveTimer>(),
+                            new ComponentBuilder<Timer<Alive>>(),
                         });
                         break;
                     default:
@@ -32,9 +33,9 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive
                 switch (condition)
                 {
                     case ReviveEntityAttribute.ReviveAfterTimeCondition reviveAfterTimeCondition:
-                        entityInitializer.Init(new ReviveTimer
+                        entityInitializer.Init(new Timer<Alive>
                         {
-                            Timer = reviveAfterTimeCondition.Timer.Reference
+                            StartValue = reviveAfterTimeCondition.Timer.Reference
                         });
                         break;
                     default:

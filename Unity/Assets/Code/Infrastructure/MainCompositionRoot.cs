@@ -29,8 +29,7 @@ namespace Code.Infrastructure
     {
         private EnginesRoot _engineRoot;
         private bool _initialized;
-
-
+        
         public void OnContextCreated<T>(T contextHolder)
         {
         }
@@ -50,7 +49,7 @@ namespace Code.Infrastructure
             #region Svelto Core
 
             EntitiesSubmissionScheduler entityScheduler = new();
-            _engineRoot = new EnginesRoot(entityScheduler);
+            _engineRoot = new(entityScheduler);
             IEntityFunctions functions = _engineRoot.GenerateEntityFunctions();
             IEntityFactory entityFactory = _engineRoot.GenerateEntityFactory();
 
@@ -83,10 +82,14 @@ namespace Code.Infrastructure
             {
                 Dictionary<TickType?, FasterList<IStepEngine>> map = new()
                 {
-                    {TickType.STARTUP, startupEngines = new()},
-                    {TickType.TICK, tickEngines = new()}
+                    {
+                        TickType.STARTUP, startupEngines = new()
+                    },
+                    {
+                        TickType.TICK, tickEngines = new()
+                    }
                 };
-
+                
                 CubeLayerComposer.Compose(AddEngine, factory, cubeConfig, time, functions);
                 EngineSyncLayerComposer.Compose(AddEngine, entityInstanceManager);
 

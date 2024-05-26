@@ -3,6 +3,8 @@
     public enum CubeEngineNames
     {
         STARTUP,
+        DESTROY_TIMER_STARTUP,
+        REVIVE_TIMER_STARTUP,
 
         UPDATE_SINE_WAVE,
         UPDATE_DIRECTION_SINE_WAVE,
@@ -13,9 +15,17 @@
         CALCULATE_DISTANCE,
         DESTROY_ON_DISTANCE,
 
-        KILL_CUBE,
+        KILL_CUBE_DISTANCE,
+        KILL_CUBE_TIMER,
 
-        REVIVE_TICK,
-        REVIVE
+        DESTROY_TIMER_TICK,
+        ADD_TO_DESTROY_TIMER_EXPIRED,
+        DESTROY_ON_TIMER_EXPIRED,
+
+        REVIVE_TIMER_TICK,
+        ADD_TO_REVIVE_TIMER_EXPIRED,
+        REVIVE_ON_TIMER_EXPIRED,
+
+        REVIVE_CUBE_TIMER,
     }
 }

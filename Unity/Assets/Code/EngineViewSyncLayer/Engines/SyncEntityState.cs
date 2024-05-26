@@ -41,7 +41,7 @@ namespace Code.EngineViewSyncLayer.Engines
 
             for (uint i = rangeOfEntities.start; i < rangeOfEntities.end; i++)
             {
-                if (Destroyed.Includes(toGroup))
+                if (Dead.Includes(toGroup))
                 {
                     _instanceManager.Remove(entityIds[i], buffer[i].ResourceId);
                 }

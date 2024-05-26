@@ -1,13 +1,14 @@
 ﻿using Code.CubeLayer.Entities;
 using Code.CubeLayer.Entities.Components;
 using Code.DestroyableLayer.Infrastructure;
+using Code.TimersLayer;
 using Svelto.Common;
 using Svelto.ECS;
+using Svelto.ECS.Internal;
 
-namespace Code.CubeLayer.Engines
+namespace Code.CubeLayer.Engines.Revive
 {
-    [Sequenced(nameof(CubeEngineNames.KILL_CUBE))]
-    public class CubeDeathEngine : IQueryingEntitiesEngine, IStepEngine
+    public abstract class CubeReviveEngine<T> : IQueryingEntitiesEngine, IStepEngine where T : struct, _IInternalEntityComponent
     {
         public void Ready()
         {
@@ -18,22 +19,22 @@ namespace Code.CubeLayer.Engines
         private readonly IEntityFunctions _functions;
         private EntitiesDB.SveltoFilters _filters;
 
-        public CubeDeathEngine(IEntityFunctions functions)
+        public CubeReviveEngine(IEntityFunctions functions)
         {
             _functions = functions;
         }
 
         public void Step()
         {
-            foreach ((EntityFilterIndices indices, ExclusiveGroupStruct exclusiveGroupStruct) in _filters.GetTransientFilter<DestroyDistance>(DestroyableFilterIds.DeadEntities))
+            foreach ((EntityFilterIndices indices, ExclusiveGroupStruct exclusiveGroupStruct) in _filters.GetTransientFilter<T>(DestroyableFilterIds.AliveEntities))
             {
                 for (int i = 0; i < indices.count; i++)
                 {
-                    _functions.SwapEntityGroup<CubeEntityDescriptor>(indices[i], exclusiveGroupStruct, DestroyedCubes.BuildGroup);
+                    _functions.SwapEntityGroup<CubeEntityDescriptor>(indices[i], exclusiveGroupStruct, AliveCubes.BuildGroup);
                 }
             }
         }
 
-        public string name => nameof(CubeEngineNames.KILL_CUBE);
+        public abstract string name { get; }
     }
 }

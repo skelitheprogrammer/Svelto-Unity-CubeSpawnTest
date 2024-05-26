@@ -11,7 +11,7 @@ namespace Code.CubeLayer.Entities
     {
     }
     
-    public class DestroyedCubes : GroupCompound<Cube, Destroyed>
+    public class DeadCubes : GroupCompound<Cube, Dead>
     {
     }
     

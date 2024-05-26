@@ -20,10 +20,17 @@ namespace Code.Infrastructure
             nameof(CubeEngineNames.CALCULATE_DISTANCE),
             nameof(CubeEngineNames.DESTROY_ON_DISTANCE),
 
-            nameof(CubeEngineNames.KILL_CUBE),
+            nameof(CubeEngineNames.DESTROY_TIMER_TICK),
+            nameof(CubeEngineNames.ADD_TO_DESTROY_TIMER_EXPIRED),
+            nameof(CubeEngineNames.DESTROY_ON_TIMER_EXPIRED),
 
-            nameof(CubeEngineNames.REVIVE_TICK),
-            nameof(CubeEngineNames.REVIVE),
+            nameof(CubeEngineNames.KILL_CUBE_DISTANCE),
+            nameof(CubeEngineNames.KILL_CUBE_TIMER),
+
+            nameof(CubeEngineNames.REVIVE_TIMER_TICK),
+            nameof(CubeEngineNames.ADD_TO_REVIVE_TIMER_EXPIRED),
+            nameof(CubeEngineNames.REVIVE_ON_TIMER_EXPIRED),
+            nameof(CubeEngineNames.REVIVE_CUBE_TIMER),
 
             nameof(SyncEngineNames.SYNC_POSITION_ENGINE),
             nameof(SyncEngineNames.SYNC_ROTATION_ENGINE),

@@ -16,28 +16,62 @@ MonoBehaviour:
     Count:
       rid: 5445433021308600376
     MovementType:
-      rid: 5445433025813807113
+      rid: 5150531975556628480
     DirectionType: 6
     SpawnType: 0
-    Attributes: []
+    Attributes:
+    - rid: 5150531975556628482
+    - rid: 5150531975556628485
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 5150531975556628480
+      type: {class: StraightLineMovementStrategy, ns: Code.UtilityLayer.DataSources.CubeConfig.MovementType,
+        asm: Assembly-CSharp}
+      data:
+        Speed:
+          rid: 5150531975556628481
+    - rid: 5150531975556628481
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 3
+    - rid: 5150531975556628482
+      type: {class: DestroyEntityAttribute, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy,
+        asm: Assembly-CSharp}
+      data:
+        Conditions:
+        - rid: 5150531975556628483
+    - rid: 5150531975556628483
+      type: {class: DestroyEntityAttribute/TimeCondition, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy,
+        asm: Assembly-CSharp}
+      data:
+        Time:
+          rid: 5150531975556628484
+    - rid: 5150531975556628484
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 2
+    - rid: 5150531975556628485
+      type: {class: ReviveEntityAttribute, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive,
+        asm: Assembly-CSharp}
+      data:
+        Conditions:
+        - rid: 5150531975556628486
+    - rid: 5150531975556628486
+      type: {class: ReviveEntityAttribute/ReviveAfterTimeCondition, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive,
+        asm: Assembly-CSharp}
+      data:
+        Timer:
+          rid: 5150531975556628490
+    - rid: 5150531975556628490
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 2
     - rid: 5445433021308600376
       type: {class: ValueReferenceInt, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
         asm: Assembly-CSharp}
       data:
         <Reference>k__BackingField: 1
-    - rid: 5445433025813807113
-      type: {class: StraightLineMovementStrategy, ns: Code.UtilityLayer.DataSources.CubeConfig,
-        asm: Assembly-CSharp}
-      data:
-        Speed:
-          rid: 5445433025813807114
-    - rid: 5445433025813807114
-      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
-        asm: Assembly-CSharp}
-      data:
-        <Reference>k__BackingField: 6

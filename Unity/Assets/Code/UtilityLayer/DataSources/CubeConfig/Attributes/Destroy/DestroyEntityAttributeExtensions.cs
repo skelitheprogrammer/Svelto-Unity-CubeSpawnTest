@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Code.CubeLayer.Entities.Components;
+using Code.DestroyableLayer.Infrastructure;
+using Code.TimersLayer;
 using Svelto.ECS;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
@@ -20,6 +22,12 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
                             new ComponentBuilder<DistanceTraveled>()
                         });
                         break;
+                    case DestroyEntityAttribute.TimeCondition:
+                        descriptor.ExtendWith(new IComponentBuilder[]
+                        {
+                            new ComponentBuilder<Timer<Dead>>()
+                        });
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(condition));
                 }
@@ -28,7 +36,7 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
 
         public static void ApplyToInitializer(this DestroyEntityAttribute attribute, ref EntityInitializer entityInitializer)
         {
-            foreach (ICondition condition in attribute.Conditions.Distinct())
+            foreach (DestroyEntityAttribute.IDestroyCondition condition in attribute.Conditions.Distinct())
             {
                 switch (condition)
                 {
@@ -36,6 +44,12 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
                         entityInitializer.Init(new DestroyDistance
                         {
                             Value = distanceReachCondition.DestroyDistance.Reference
+                        });
+                        break;
+                    case DestroyEntityAttribute.TimeCondition timeCondition:
+                        entityInitializer.Init(new Timer<Dead>()
+                        {
+                            StartValue = timeCondition.Time.Reference,
                         });
                         break;
                     default:

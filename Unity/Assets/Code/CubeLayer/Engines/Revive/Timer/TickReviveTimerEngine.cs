@@ -1,12 +1,14 @@
 ﻿using Code.CubeLayer.Entities;
-using Code.CubeLayer.Entities.Components;
+using Code.DestroyableLayer.Infrastructure;
+using Code.TimersLayer;
 using Code.UtilityLayer;
 using Svelto.Common;
 using Svelto.ECS;
+using UnityEngine;
 
 namespace Code.CubeLayer.Engines.Revive
 {
-    [Sequenced(nameof(CubeEngineNames.REVIVE_TICK))]
+    [Sequenced(nameof(CubeEngineNames.REVIVE_TIMER_TICK))]
     public class TickReviveTimerEngine : IQueryingEntitiesEngine, IStepEngine
     {
         public void Ready()
@@ -23,15 +25,16 @@ namespace Code.CubeLayer.Engines.Revive
 
         public void Step()
         {
-            foreach (((var timers, int count), _) in entitiesDB.QueryEntities<ReviveTimer>(DestroyedCubes.Groups))
+            foreach (((var timers, int count), _) in entitiesDB.QueryEntities<Timer<Alive>>(DeadCubes.Groups))
             {
                 for (int i = 0; i < count; i++)
                 {
                     timers[i].Value -= _time.DeltaTime;
+                    Debug.Log($"Time to revive {timers[i].Value}");
                 }
             }
         }
 
-        public string name => nameof(CubeEngineNames.REVIVE_TICK);
+        public string name => nameof(CubeEngineNames.REVIVE_TIMER_TICK);
     }
 }

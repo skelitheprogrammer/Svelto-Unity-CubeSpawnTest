@@ -6,7 +6,7 @@ namespace Code.DestroyableLayer.Infrastructure
     {
     }
 
-    public class Destroyed : GroupTag<Destroyed>
+    public class Dead : GroupTag<Dead>
     {
     }
 }

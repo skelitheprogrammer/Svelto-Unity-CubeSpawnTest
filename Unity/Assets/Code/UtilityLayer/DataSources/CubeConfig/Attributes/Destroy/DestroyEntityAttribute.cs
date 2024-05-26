@@ -10,9 +10,8 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
     {
         public interface IDestroyCondition : ICondition
         {
-            
         }
-        
+
         [SerializeReference, SubclassSelector] public IDestroyCondition[] Conditions;
     }
 
@@ -22,6 +21,13 @@ namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy
         public class DistanceReachCondition : IDestroyCondition
         {
             [SerializeReference, SubclassSelector] public IValueReferenceFloat DestroyDistance = new ValueReferenceFloat();
+        }
+
+
+        [System.Serializable]
+        public class TimeCondition : IDestroyCondition
+        {
+            [SerializeReference, SubclassSelector] public IValueReferenceFloat Time = new ValueReferenceFloat();
         }
     }
 }
