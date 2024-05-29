@@ -1,7 +1,7 @@
 # SveltoECS-Demo: Spawning cubes!
 
-Purpose of this demo is to learn what is Svelto, learn it and make sure that this framework is go to creating games
-without any headache
+The goal of this demo is to learn what Svelto is, learn how to use it, and see if this framework is suitable for making games
+without the headache
 
 # Philosophy
 
