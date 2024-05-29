@@ -77,6 +77,8 @@ and pass value.
 If you want in range, you select `Min Max Unity Random Range int`, which allows to randomly select number in predefined
 range.
 
+This system has its flaws, which I listed in Issues, but it solves my problem with configuration
+
 ## PlayerLoopExtender
 
 Its personal, home project which extends and simplifies capabilities of Unity's Player
