@@ -92,3 +92,6 @@ destroy them after time, and on the next day he wanted to let them revive after 
 With that I created attributes. They allow user in config add those behaviours and their conditions.
 ![ConfigSystemAttributes.png](image%2FConfigSystemAttributes.png)
 
+# Future
+Check issues if you want to know what I want to improve in the future
+
