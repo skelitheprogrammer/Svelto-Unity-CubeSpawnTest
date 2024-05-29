@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70dc50afb214768a1071ce19098e909, type: 3}
+  m_Name: 50Straight50SineWave
+  m_EditorClassIdentifier: 
+  <Config>k__BackingField:
+    CubeSettings:
+    - rid: 5150532046726103062
+    - rid: 5150532046726103063
+    Prefab: {fileID: 5377948438127170039, guid: 45986af55d4afec4d9dc0b136143538d,
+      type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 5150532046726103062
+      type: {class: CubeSettingsReference, ns: Code.UtilityLayer.DataSources.CubeConfig,
+        asm: Assembly-CSharp}
+      data:
+        Reference: {fileID: 11400000, guid: e5b21b9e5524fff408ab9ccc5281cd1e, type: 2}
+    - rid: 5150532046726103063
+      type: {class: CubeSettingsReference, ns: Code.UtilityLayer.DataSources.CubeConfig,
+        asm: Assembly-CSharp}
+      data:
+        Reference: {fileID: 11400000, guid: e098ffc4660beba4ab050db5f4a00ade, type: 2}

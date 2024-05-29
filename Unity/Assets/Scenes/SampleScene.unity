@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c682f6cbb9b74fa4bcbdaa5ebf5e07a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConfigSO: {fileID: 11400000, guid: 75f9a174de565944ca1c4165c48e1abc, type: 2}
+  ConfigSO: {fileID: 11400000, guid: 34c3a469e75c22247a447cda9e4f4ccf, type: 2}
 --- !u!4 &2020557479
 Transform:
   m_ObjectHideFlags: 0
