@@ -1,0 +1,80 @@
+# SveltoECS-Demo: Spawning cubes!
+
+Purpose of this demo is to learn what is Svelto, learn it and make sure that this framework is go to creating games
+without any headache
+
+# Philosophy
+
+Project has been built with couple things in mind:
+
+- Check most of the Svelto features;
+- Understand how work with Svelto;
+- Create flexible project;
+- Showcase capabilities of the framework;
+
+One little thing I added to make this demo harder to develop. I created imaginary designer, which has 1 problem:
+He is incompetent. He has no backbone. He not sure with what he asks and tomorrow he can change his mind. With that
+twist my demo ended up in a interesting route.
+
+# Problem
+
+Initial script for this demo:
+"You need to create a demo, where on startup 100 cubes will spawn in sphere like shape and move from sphere normal
+indefinitely ".
+
+# Solution
+
+> [!NOTE]
+> Project still in "lazy" development. This means that I will upgrade it, when I will get time.
+
+![100CubesAroundShereWithRandomSpeed.gif](Unity.Recordings%2F100CubesAroundShereWithRandomSpeed.gif)
+
+
+Using svelto guidelines and approaches, I ended up with creating MainCompositionRoot, which resolves all dependencies.
+This project doesn't include any DI frameworks, it was my choice. Asteroids don't need DI, so this demo.
+
+Entry-point for this demo is MainContext, which initializes MainCompositionRoot.
+![MainContextShowcase.png](image%2FMainContextShowcase.png)
+
+Each Module/Feature divided into own Abstraction Layer.
+
+Logic only* exists inside Engines(so called Systems). Some of them exists in services.
+
+# Structure
+
+- Everything that should be drawn on screen should be treated as a "View" layer.
+    - ECS manages visuals. There is no from engine sync (gameObjects creates entities).
+- Personal Config System. Allows to create various combinations of entities in editor, using ScriptableObjects.
+- Personal Player Loop integration. Using PlayerLoopExtender I integrated update flow inside Unity's Player Loop.
+
+## View Layer
+
+When the project starts, composition root retrieves config data from Context and acts on it.
+Config data tells what entities should be to spawn on scene and how much.
+
+To manage view I introduced feature, prestented in [ECS.Rx](https://ecsrx.gitbook.io/project/plugins/view-plugin), but in my own vision.
+- Ecs should not know about what type of instance he should draw: GameObject/SBR/Graphics/GL.
+- To get instance of a view I created `IViewHandler`, which handles how to get a view.
+- To control sync entity with view I introduced `EntityInstanceManager`, which stores relations between Entity and View.
+- For performance reason I introduced `IViewPool` and `IViewFactory`, which `IViewHandler` instance `CubeViewHandler` uses to get instances (what if one day I would need to have a ViewHandler which will not need a pool? Some single call instances..)
+
+
+## Config System
+
+When time goes on, designer wanted to change some things. He wanted to change entities move. Now he wanted to apply Sine wave movement.
+Config system allows to bridge the gap with how to spawn entities. With time I added various options, how to spawn an entities.
+
+![ConfigSystemInstance.png](image%2FConfigSystemInstance.png)
+
+Each parameter can have different behaviours. If you need exactly 100 cubes, user have to select `Value Reference Int` and pass value.
+If you want in range, you select `Min Max Unity Random Range int`, which allows to randomly select number in predefined range.
+
+## PlayerLoopExtender
+Its personal, home project which extends and simplifies capabilities of Unity's Player Loop. [See more](https://github.com/skelitheprogrammer/PlayerLoopExtender)
+
+# Other Features
+In the end I added Attribute Feature, which extends entity base behaviour. Due svelto nature of "No structural change on entity in runtime" we can't change how entity act after it created. So, you have to assign all possible behaviour preactivly.
+And my designer wants to change cube's behaviour! He wants to destroy them after distance rach (tomorrow he wanted to destroy them after time, and on the next day he wanted to let them revive after some time).
+With that I created attributes. They allow user in config add those behaviours and their conditions.
+![ConfigSystemAttributes.png](image%2FConfigSystemAttributes.png)
+

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9a811a47b246daa23b41c8855392ca, type: 3}
-  m_Name: 1_StraightLine_LinearSpeed
+  m_Name: 100_StraightLine_RandomSpeed_NormalDIrection
   m_EditorClassIdentifier: 
   <Settings>k__BackingField:
     Count:
       rid: 5445433021308600376
     MovementType:
       rid: 5150531975556628480
-    DirectionType: 0
-    SpawnType: 0
+    DirectionType: 6
+    SpawnType: 1
     Attributes: []
   references:
     version: 2
@@ -28,14 +28,27 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         Speed:
-          rid: 5150531975556628481
-    - rid: 5150531975556628481
+          rid: 5150532046726103043
+    - rid: 5150532046726103043
+      type: {class: MinMaxUnityReferenceFloat, ns: Code.UtilityLayer.DataSources.Unity,
+        asm: Assembly-CSharp}
+      data:
+        _min:
+          rid: 5150532046726103044
+        _max:
+          rid: 5150532046726103045
+    - rid: 5150532046726103044
       type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
         asm: Assembly-CSharp}
       data:
         <Reference>k__BackingField: 3
+    - rid: 5150532046726103045
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 6
     - rid: 5445433021308600376
       type: {class: ValueReferenceInt, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
         asm: Assembly-CSharp}
       data:
-        <Reference>k__BackingField: 1
+        <Reference>k__BackingField: 100

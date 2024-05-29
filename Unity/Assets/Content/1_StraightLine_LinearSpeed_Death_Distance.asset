@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9a811a47b246daa23b41c8855392ca, type: 3}
-  m_Name: 1_StraightLine_LinearSpeed
+  m_Name: 1_StraightLine_LinearSpeed_Death_Distance
   m_EditorClassIdentifier: 
   <Settings>k__BackingField:
     Count:
@@ -19,7 +19,8 @@ MonoBehaviour:
       rid: 5150531975556628480
     DirectionType: 0
     SpawnType: 0
-    Attributes: []
+    Attributes:
+    - rid: 5150532046726103046
   references:
     version: 2
     RefIds:
@@ -34,6 +35,23 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         <Reference>k__BackingField: 3
+    - rid: 5150532046726103046
+      type: {class: DestroyEntityAttribute, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy,
+        asm: Assembly-CSharp}
+      data:
+        Conditions:
+        - rid: 5150532046726103047
+    - rid: 5150532046726103047
+      type: {class: DestroyEntityAttribute/DistanceReachCondition, ns: Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy,
+        asm: Assembly-CSharp}
+      data:
+        DestroyDistance:
+          rid: 5150532046726103048
+    - rid: 5150532046726103048
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 16
     - rid: 5445433021308600376
       type: {class: ValueReferenceInt, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
         asm: Assembly-CSharp}
