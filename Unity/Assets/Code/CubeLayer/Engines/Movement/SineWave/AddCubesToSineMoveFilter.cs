@@ -5,6 +5,15 @@ namespace Code.CubeLayer.Engines.Movement.SineWave
 {
     public class AddCubesToSineMoveFilter : IQueryingEntitiesEngine, IReactOnAddAndRemoveEx<SineWaveData>
     {
+        public EntitiesDB entitiesDB { get; set; }
+        private EntitiesDB.SveltoFilters _filters;
+
+        public void Ready()
+        {
+            _filters = entitiesDB.GetFilters();
+            _filters.CreatePersistentFilter<SineWaveData>(CubeFilters.SineMovableCubes);
+        }
+
         public void Add((uint start, uint end) rangeOfEntities, in EntityCollection<SineWaveData> entities, ExclusiveGroupStruct groupID)
         {
             var (_, entityIDs, _) = entities;
@@ -28,14 +37,5 @@ namespace Code.CubeLayer.Engines.Movement.SineWave
                 cachedFilter.Remove(entityIDs[i], groupID);
             }
         }
-
-        public void Ready()
-        {
-            _filters = entitiesDB.GetFilters();
-            _filters.CreatePersistentFilter<SineWaveData>(CubeFilters.SineMovableCubes);
-        }
-
-        public EntitiesDB entitiesDB { get; set; }
-        private EntitiesDB.SveltoFilters _filters;
     }
 }

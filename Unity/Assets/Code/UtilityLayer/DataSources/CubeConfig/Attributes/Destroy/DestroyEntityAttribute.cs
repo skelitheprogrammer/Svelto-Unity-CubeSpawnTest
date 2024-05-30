@@ -2,7 +2,6 @@
 using Code.Common.DataConfigSystem.ValueReference;
 using Code.Common.DataConfigSystem.ValueReference.Unmanaged;
 using Code.UtilityLayer.DataSources.CubeConfig.Attributes.Conditions;
-using Code.UtilityLayer.DataSources.CubeConfig.Attributes.Revive;
 using UnityEngine;
 
 namespace Code.UtilityLayer.DataSources.CubeConfig.Attributes.Destroy

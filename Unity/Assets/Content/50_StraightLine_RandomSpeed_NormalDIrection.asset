@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9a811a47b246daa23b41c8855392ca, type: 3}
+  m_Name: 50_StraightLine_RandomSpeed_NormalDIrection
+  m_EditorClassIdentifier: 
+  <Settings>k__BackingField:
+    Count:
+      rid: 5445433021308600376
+    MovementType:
+      rid: 5150531975556628480
+    DirectionType: 6
+    SpawnType: 1
+    Attributes: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 5150531975556628480
+      type: {class: StraightLineMovementStrategy, ns: Code.UtilityLayer.DataSources.CubeConfig.MovementType,
+        asm: Assembly-CSharp}
+      data:
+        Speed:
+          rid: 5150532046726103043
+    - rid: 5150532046726103043
+      type: {class: MinMaxUnityReferenceFloat, ns: Code.UtilityLayer.DataSources.Unity,
+        asm: Assembly-CSharp}
+      data:
+        _min:
+          rid: 5150532046726103044
+        _max:
+          rid: 5150532046726103045
+    - rid: 5150532046726103044
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 3
+    - rid: 5150532046726103045
+      type: {class: ValueReferenceFloat, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 6
+    - rid: 5445433021308600376
+      type: {class: ValueReferenceInt, ns: Code.Common.DataConfigSystem.ValueReference.Unmanaged,
+        asm: Assembly-CSharp}
+      data:
+        <Reference>k__BackingField: 50

@@ -29,7 +29,7 @@ namespace Code.CubeLayer.Engines
                     _ => throw new ArgumentOutOfRangeException()
                 };
 
-                for (int i = 0; i < settings.Count.Reference; i++)
+                for (int j = 0; j < settings.Count.Reference; j++)
                 {
                     _factory.Create(settings);
                 }

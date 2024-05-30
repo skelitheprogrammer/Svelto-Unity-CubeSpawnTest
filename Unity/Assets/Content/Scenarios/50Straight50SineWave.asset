@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Config>k__BackingField:
     CubeSettings:
-    - rid: 5150532046726103062
     - rid: 5150532046726103063
+    - rid: 5150532046726103062
     Prefab: {fileID: 5377948438127170039, guid: 45986af55d4afec4d9dc0b136143538d,
       type: 3}
   references:
@@ -25,9 +25,9 @@ MonoBehaviour:
       type: {class: CubeSettingsReference, ns: Code.UtilityLayer.DataSources.CubeConfig,
         asm: Assembly-CSharp}
       data:
-        Reference: {fileID: 11400000, guid: e5b21b9e5524fff408ab9ccc5281cd1e, type: 2}
+        Reference: {fileID: 11400000, guid: e098ffc4660beba4ab050db5f4a00ade, type: 2}
     - rid: 5150532046726103063
       type: {class: CubeSettingsReference, ns: Code.UtilityLayer.DataSources.CubeConfig,
         asm: Assembly-CSharp}
       data:
-        Reference: {fileID: 11400000, guid: e098ffc4660beba4ab050db5f4a00ade, type: 2}
+        Reference: {fileID: 11400000, guid: e5b21b9e5524fff408ab9ccc5281cd1e, type: 2}

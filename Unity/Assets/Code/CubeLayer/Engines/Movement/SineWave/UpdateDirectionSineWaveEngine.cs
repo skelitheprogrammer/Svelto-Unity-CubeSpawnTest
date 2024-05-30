@@ -25,14 +25,18 @@ namespace Code.CubeLayer.Engines.Movement.SineWave
 
         public void Step()
         {
+            //TODO: Ugly. Make it better
             foreach ((EntityFilterIndices indices, ExclusiveGroupStruct group) in _filters.GetPersistentFilter<SineWaveData>(CubeFilters.SineMovableCubes))
             {
-                (var directions, var sineWaves, int _) = entitiesDB.QueryEntities<MoveDirection, SineWaveData>(group);
+                (var directions, int _) = entitiesDB.QueryEntities<MoveDirection>(group);
+                (var sineWaves, int _) = entitiesDB.QueryEntities<SineWaveData>(group);
 
-                for (int i = 0; i < indices.count; i++)
+                for (int i = 0; i < indices.count; ++i)
                 {
-                    SineWaveData sineWave = sineWaves[indices[i]];
-                    ref MoveDirection moveDirection = ref directions[indices[i]];
+                    uint filteredIndex = indices[i];
+
+                    SineWaveData sineWave = sineWaves[filteredIndex];
+                    ref MoveDirection moveDirection = ref directions[filteredIndex];
                     moveDirection.Value += Vector3.Cross(moveDirection.Value, sineWave.Axis) * (sineWave.Value * _time.DeltaTime);
                     moveDirection.Value.Normalize();
                 }

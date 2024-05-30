@@ -1,5 +1,4 @@
-﻿using Code.CubeLayer.Entities;
-using Code.CubeLayer.Entities.Components;
+﻿using Code.CubeLayer.Entities.Components;
 using Code.TransformLayer.Entities.Components;
 using Svelto.ECS;
 using UnityEngine;
